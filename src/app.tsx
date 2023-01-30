@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
+import { Route } from "react-router-dom";
+import Movies from "./pages/movies/Movies";
 
 const App = () => {
-    return(
-        <h1>Hello world для проекта - filmus</h1>
-    )
-}
+  <div className="App">
+    <Route path="/" component={Movies} exact />
+  </div>;
+};
 
 export default App;
-

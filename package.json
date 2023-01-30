@@ -25,6 +25,7 @@
         "@ijl/cli": "^4.1.6",
         "@types/react": "^17.0.53",
         "@types/react-dom": "^17.0.18",
+        "@types/react-router-dom": "^5.3.3",
         "express": "^4.18.2",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
