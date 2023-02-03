@@ -1,38 +1,39 @@
 {
-    "name": "filmus",
-    "version": "1.0.0",
-    "description": "A project to show personalized information about movies using IMDB API. The project is based upon MERN stack",
-    "main": "./src/index.tsx",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "ijl-cli --server --port=8099 --with-open-browser",
-        "build": "npm run clean && ijl-cli --build --dev",
-        "build:prod": "npm run clean && ijl-cli --build",
-        "clean": "rimraf dist"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Asem-Abdelhady/filmus.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/Asem-Abdelhady/filmus/issues"
-    },
-    "homepage": "https://github.com/Asem-Abdelhady/filmus#readme",
-    "dependencies": {
-        "@chakra-ui/react": "^2.4.9",
-        "@emotion/react": "^11.10.5",
-        "@emotion/styled": "^11.10.5",
-        "@ijl/cli": "^4.1.6",
-        "@types/react": "^17.0.53",
-        "@types/react-dom": "^17.0.18",
-        "@types/react-router-dom": "^5.3.3",
-        "express": "^4.18.2",
-        "framer-motion": "^8.5.5",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
-        "typescript": "^4.9.4"
-    }
+  "name": "filmus",
+  "version": "1.0.0",
+  "description": "A project to show personalized information about movies using IMDB API. The project is based upon MERN stack",
+  "main": "./src/index.tsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ijl-cli --server --port=8099 --with-open-browser",
+    "build": "npm run clean && ijl-cli --build --dev",
+    "build:prod": "npm run clean && ijl-cli --build",
+    "clean": "rimraf dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Asem-Abdelhady/filmus.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Asem-Abdelhady/filmus/issues"
+  },
+  "homepage": "https://github.com/Asem-Abdelhady/filmus#readme",
+  "dependencies": {
+    "@chakra-ui/react": "^2.4.9",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@ijl/cli": "^4.1.6",
+    "@types/react": "^17.0.53",
+    "@types/react-dom": "^17.0.18",
+    "@types/react-router-dom": "^5.3.3",
+    "express": "^4.18.2",
+    "framer-motion": "^8.5.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.8.0",
+    "typescript": "^4.9.4"
+  }
 }
