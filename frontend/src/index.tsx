@@ -1,27 +1,29 @@
-import React from 'react';
-import ReactDom from 'react-dom';
+import React from "react";
+import ReactDom from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 
-import App from './app';
+import App from "./app";
 
-export default () => <App/>;
+export default () => {
+  return (
+    <React.StrictMode>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </React.StrictMode>
+  );
+};
 
 export const mount = (Сomponent) => {
-    ReactDom.render(
-        <Сomponent/>,
-        document.getElementById('app')
-    );
+  ReactDom.render(<Сomponent />, document.getElementById("app"));
 
-    if(module.hot) {
-        module.hot.accept('./app', ()=> {
-            ReactDom.render(
-                <App/>,
-                document.getElementById('app')
-            );
-        })
-    }
+  if (module.hot) {
+    module.hot.accept("./app", () => {
+      ReactDom.render(<App />, document.getElementById("app"));
+    });
+  }
 };
 
 export const unmount = () => {
-    ReactDom.unmountComponentAtNode(document.getElementById('app'));
+  ReactDom.unmountComponentAtNode(document.getElementById("app"));
 };
-
