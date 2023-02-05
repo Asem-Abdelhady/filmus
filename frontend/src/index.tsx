@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDom from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider } from "@chakra-ui/react";
 
 import App from "./app";
 
@@ -9,9 +9,7 @@ export default () => {
   return (
     <React.StrictMode>
       <BrowserRouter>
-        <ChakraProvider>
-          <App />
-        </ChakraProvider>
+        <App />
       </BrowserRouter>
     </React.StrictMode>
   );
