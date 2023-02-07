@@ -9,7 +9,9 @@ export default () => {
   return (
     <React.StrictMode>
       <BrowserRouter>
-        <App />
+        <ChakraProvider>
+          <App />
+        </ChakraProvider>
       </BrowserRouter>
     </React.StrictMode>
   );
