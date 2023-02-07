@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 import { Response, Request } from "express";
 
-import lovedMoviesHandler from "../controllers/LovedMoveiesController";
+import lovedMoviesHandler from "../controllers/LovedMoviesController";
 
 router
   .route("/")
