@@ -1,0 +1,2 @@
+Asem -> Change schema yo only IDs for movies and User schema
+Asme -> Make the neecessary changes for mongoose and routing 
