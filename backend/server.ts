@@ -6,7 +6,7 @@ import axios from 'axios';
 
 require("dotenv").config();
 
-connectDB();
+// connectDB();
 
 const app = express();
 app.use(express.json());
@@ -38,7 +38,7 @@ app.get('/trending', async (req: Request, res: Response) => {
 });
 
 // Getting movies by page
-app.get('/movie', async (req: Request, res: Response) => {
+app.get('/discover/movie', async (req: Request, res: Response) => {
   try {
    
     let page:number = parseInt(req.query.page as string);
@@ -57,7 +57,7 @@ app.get('/movie', async (req: Request, res: Response) => {
 
 
 // Getting tv series by page
-app.get('/tv', async (req: Request, res: Response) => {
+app.get('/discover/tv', async (req: Request, res: Response) => {
   try {
    
     let page:number = parseInt(req.query.page as string);
@@ -74,6 +74,106 @@ app.get('/tv', async (req: Request, res: Response) => {
     }
 });
 
+
+// Getting specific movie data by id
+app.get('/movie/:id', async (req: Request, res: Response) => {
+  try {
+
+    console.log(req.params.id);
+
+    let id:number = parseInt(req.params.id as string);   
+
+    const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`)
+    res.json(response.data);
+    
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
+// Getting specific tv details
+app.get('/tv/:id', async (req: Request, res: Response) => {
+  try {
+
+    let id:number = parseInt(req.params.id as string);
+   
+    const response = await axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}&language=en-US`)
+    res.json(response.data);
+    
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
+
+
+// Getting credits for specific movie by id
+app.get('/movie/:id/credits', async (req: Request, res: Response) => {
+  try {
+
+    let id:number = parseInt(req.params.id as string);
+   
+    const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=en-US`)
+    res.json(response.data);
+    
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
+// Getting credits for specific tv by id
+app.get('/tv/:id/credits', async (req: Request, res: Response) => {
+  try {
+
+    let id:number = parseInt(req.params.id as string);
+   
+    const response = await axios.get(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${API_KEY}&language=en-US`)
+    res.json(response.data);
+    
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
+// Getting list of genres for movie or tv series
+app.get('/genre/:type/list', async (req: Request, res: Response) => {
+  try {
+
+   
+    let type:string = req.params.type as string;
+   
+    const response = await axios.get(`https://api.themoviedb.org/3/genre/${type}/list?api_key=${API_KEY}&language=en-US`)
+    res.json(response.data);
+    
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
+// Getting videos of specific movie or tv by id
+app.get('/:type/:id/videos', async (req: Request, res: Response) => {
+  try {
+      let id:number = parseInt(req.params.id as string);
+      let type:string = req.params.type as string;
+    
+      const response = await axios.get(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${API_KEY}&language=en-US`)
+      res.json(response.data);
+      
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+      }
+});
 
 
 app.listen(PORT, () => {
