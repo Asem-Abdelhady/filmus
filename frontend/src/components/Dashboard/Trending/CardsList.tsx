@@ -10,11 +10,15 @@ const CardsList = ({data, type}) => {
 var list = []
 for (var d in data) {
   list.push(<Card key={"card_" + type + "_" + d} 
-    title={data[d][0]} 
-    description={data[d][1]} 
+    id={data[d].id}
+    title={data[d].title || data[d].name} 
+    date={data[d].first_air_date || data[d].release_date}
+    media_type={data[d].media_type}
     favourite={data[d][2]} 
     planned={data[d][3]} 
-    url={data[d][4]} 
+    poster={data[d].poster_path} 
+    vote_average={data[d].vote_average}
+    vote_count = {data[d].vote_count}
     type={type}/>)
 }
 return (
