@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import Navbar from "../../components/Dashboard/Navbar/Navbar";
-import CardsList from "../../components/Dashboard/Movies/CardsList";
+import CardsList from "../../components/Dashboard/Trending/CardsList";
 
 // TODO : remove test data
 var dataFav: [string, string, boolean, boolean, string][] = [
