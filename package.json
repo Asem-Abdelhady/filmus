@@ -4,7 +4,8 @@
   "description": "A project to show personalized information about movies using IMDB API. The project is based upon MERN stack",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:prod": "cd ./frontend && npm run build:prod"
   },
   "repository": {
     "type": "git",
