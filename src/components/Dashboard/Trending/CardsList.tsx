@@ -1,30 +1,38 @@
-import {
-    SimpleGrid,
-} from "@chakra-ui/react";
+import { SimpleGrid, Text, VStack } from "@chakra-ui/react";
 import React from "react";
-import Card from "./Card";
+import IApiResponse from "../../../interfaces/ApiResponse";
+import IApiWholeRsponse from "../../../interfaces/ApiWholeResponse";
+import Card from "./Card/Card";
 
-// Data item: (title, ?favourite, ?plannes, url)
+const CardsList = (responseData: IApiWholeRsponse) => {
+  let cards = responseData.results.map((card) => (
+    <Card
+      id={card.id}
+      imgPath={card.poster_path}
+      name={card.title}
+      date={card.release_date}
+      rating={card.vote_average}
+      votes={card.vote_count}
+      isPlanned={false}
+      isFavourite={false}
+    />
+  ));
 
-const CardsList = ({data, type}) => {
-var list = []
-for (var d in data) {
-  list.push(<Card key={"card_" + type + "_" + d} 
-    id={data[d].id}
-    title={data[d].title || data[d].name} 
-    date={data[d].first_air_date || data[d].release_date}
-    media_type={data[d].media_type}
-    favourite={data[d][2]} 
-    planned={data[d][3]} 
-    poster={data[d].poster_path} 
-    vote_average={data[d].vote_average}
-    vote_count = {data[d].vote_count}
-    type={type}/>)
-}
-return (
-    <SimpleGrid w={"100%"} minChildWidth='300px' spacing='30px' padding={5}>
-      {list}
-    </SimpleGrid>
+  return (
+    <VStack w="100%" justify={"left"}>
+      <Text
+        w={"100%"}
+        fontSize="2xl"
+        fontFamily="Work sans"
+        paddingLeft={5}
+        justifyItems={"left"}
+      >
+        Trending This week
+      </Text>
+      <SimpleGrid w={"100%"} minChildWidth="300px" spacing="30px" padding={5}>
+        {cards}
+      </SimpleGrid>
+    </VStack>
   );
 };
 
