@@ -3,14 +3,10 @@ import { Text, HStack, VStack, IconButton } from "@chakra-ui/react";
 import React from "react";
 
 import DefaultButton from "../../../Common/DefaultButton";
-import ImageButton from "../../../Common/ImageButton";
-
-import HeartEmpty from "./imgs/heart-empty.png";
-import Heart from "./imgs/heart.png";
-import StarEmpty from "./imgs/star-empty.png";
-import Star from "./imgs/star.png";
 
 import { img_300, unavailable } from "../../../../config/config";
+import {MdOutlineFavoriteBorder} from "react-icons/md";
+import {AiOutlineStar} from "react-icons/ai";
 
 import ICardProps from "./CardProps";
 
@@ -24,7 +20,7 @@ const Card = (props: ICardProps) => {
         src={props.imgPath ? `${img_300}${props.imgPath}` : unavailable}
         alt="Movie picture"
       />
-      <Text w={"100%"} fontSize="xl" fontFamily="Work sans">
+      <Text w={"100%"} fontSize="xl" fontFamily="Work sans" fontWeight={"bold"} noOfLines={1}>
         {props.name}
       </Text>
       <Text w={"100%"} fontSize="l" fontFamily="Work sans">
@@ -40,8 +36,8 @@ const Card = (props: ICardProps) => {
 
       <HStack w={"100%"} bg="white" justifyContent={"left"}>
         <DefaultButton text={"Watch now!"} />
-        <IconButton colorScheme="yellow" aria-label="Star" icon={StarEmpty} />
-        <IconButton colorScheme="pink" aria-label="Heart" icon={HeartEmpty} />
+        <IconButton colorScheme="yellow" aria-label="Star" icon={<AiOutlineStar/>} />
+        <IconButton colorScheme="pink" aria-label="Heart" icon={<MdOutlineFavoriteBorder/>} />
       </HStack>
     </VStack>
   );

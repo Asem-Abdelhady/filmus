@@ -21,7 +21,7 @@ const Navbar = () => {
       <HStack w='100%'>
         <Box padding={5}><Image htmlWidth={175} src={logo} alt='Filmus logo' /></Box>
         <Wrap w='100%' spacing={4} justify='right' padding={5}> 
-          <Link href="/filmus">
+          <Link href="/ ">
             <DefaultButton text={"Home"}/>
           </Link>
           <Link href="/filmus/movies">

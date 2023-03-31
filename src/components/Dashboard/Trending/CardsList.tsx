@@ -5,12 +5,13 @@ import IApiWholeRsponse from "../../../interfaces/ApiWholeResponse";
 import Card from "./Card/Card";
 
 const CardsList = (responseData: IApiWholeRsponse) => {
-  let cards = responseData.results.map((card) => (
+  const filteredResults = responseData.results.filter((card) => card.title!==undefined && card.poster_path!==undefined);
+  let cards = filteredResults.map((card) => (
     <Card
       id={card.id}
       imgPath={card.poster_path}
       name={card.title}
-      date={card.release_date}
+      date={card.release_date? card.release_date: "Uknown"}
       rating={card.vote_average}
       votes={card.vote_count}
       isPlanned={false}

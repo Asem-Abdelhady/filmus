@@ -12,7 +12,6 @@ import Navbar from "../../components/Dashboard/Navbar/Navbar";
 const Profile = () => {
   return (
     <VStack w="100%" justify={"left"}>
-      <Navbar/>
       <Text w={"100%"} fontSize="2xl" fontFamily="Work sans" paddingLeft={5} justifyItems={"left"}>
         Profile
       </Text>
