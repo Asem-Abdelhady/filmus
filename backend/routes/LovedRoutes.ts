@@ -1,16 +1,15 @@
 const express = require("express");
 const router = express.Router();
-import { Response, Request } from "express";
 
-import lovedMoviesHandler from "../controllers/LovedMoviesController";
+import lovedMoviesController from "../controllers/LovedMoviesController";
 
 router
   .route("/")
-  .get(lovedMoviesHandler.getMovies)
-  .post(lovedMoviesHandler.createMovie);
+  .get(lovedMoviesController.getMovies)
+  .post(lovedMoviesController.createMovie);
 router
   .route("/:id")
-  .get(lovedMoviesHandler.getMovie)
-  .put(lovedMoviesHandler.updateMovie)
-  .delete(lovedMoviesHandler.deleteMovie);
+  .get(lovedMoviesController.getMovie)
+  .put(lovedMoviesController.updateMovie)
+  .delete(lovedMoviesController.deleteMovie);
 module.exports = router;

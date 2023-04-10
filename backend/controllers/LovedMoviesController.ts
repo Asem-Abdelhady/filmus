@@ -1,6 +1,6 @@
 import MoviesHandler from "./SavedMoviesController";
 import LovedMovie from "../models/LovedMoviesModel";
 
-const lovedMoviesHandler = new MoviesHandler(LovedMovie);
+const lovedMoviesController = new MoviesHandler(LovedMovie);
 
-export default lovedMoviesHandler;
+export default lovedMoviesController;

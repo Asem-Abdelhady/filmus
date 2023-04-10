@@ -7,6 +7,7 @@ const lovedMovieSchema = new Schema<ISavedMovie>(
     desc: { type: String, required: true },
     pic: { type: String, required: true },
     rate: { type: Number },
+    date: { type: String },
   },
   {
     timestamps: true,

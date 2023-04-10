@@ -1,6 +1,6 @@
 import MoviesHandler from "./SavedMoviesController";
 import ToWatchMovieModel from "../models/ToWatchMoviesModel";
 
-const toWatchMoviesHandler = new MoviesHandler(ToWatchMovieModel);
+const toWatchMoviesController = new MoviesHandler(ToWatchMovieModel);
 
-export default toWatchMoviesHandler;
+export default toWatchMoviesController;

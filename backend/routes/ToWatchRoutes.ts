@@ -1,15 +1,14 @@
 const express = require("express");
 const router = express.Router();
-import { Response, Request } from "express";
+import toWatchMoviesController from "../controllers/ToWatchMoviesController";
 
-const {
-  getMovies,
-  getMovie,
-  updateMovie,
-  deleteMovie,
-  createMovie,
-} = require("../controllers/savedMoviesController");
-
-router.route("/").get(getMovies).post(createMovie);
-router.route("/:id").get(getMovie).put(updateMovie).delete(deleteMovie);
+router
+  .route("/")
+  .get(toWatchMoviesController.getMovies)
+  .post(toWatchMoviesController.createMovie);
+router
+  .route("/:id")
+  .get(toWatchMoviesController.getMovie)
+  .put(toWatchMoviesController.updateMovie)
+  .delete(toWatchMoviesController.deleteMovie);
 module.exports = router;
