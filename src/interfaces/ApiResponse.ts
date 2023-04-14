@@ -14,3 +14,5 @@ export default interface IApiResponse {
   video: boolean;
   vote_average: number;
 }
+
+
