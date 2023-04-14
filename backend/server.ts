@@ -28,7 +28,7 @@ app.get('/trending', async (req: Request, res: Response) => {
       page = 1;
     }
 
-    const response = await axios.get(`https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}&page=${page}`)
+    const response = await axios.get(`https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}&page=${page}`)
     res.json(response.data);
     
     } catch (error) {
@@ -146,11 +146,8 @@ app.get('/tv/:id/credits', async (req: Request, res: Response) => {
 // Getting list of genres for movie or tv series
 app.get('/genre/:type/list', async (req: Request, res: Response) => {
   try {
-
    
-    let type:string = req.params.type as string;
-   
-    const response = await axios.get(`https://api.themoviedb.org/3/genre/${type}/list?api_key=${API_KEY}&language=en-US`)
+    const response = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`)
     res.json(response.data);
     
     } catch (error) {
@@ -161,12 +158,11 @@ app.get('/genre/:type/list', async (req: Request, res: Response) => {
 
 
 // Getting videos of specific movie or tv by id
-app.get('/:type/:id/videos', async (req: Request, res: Response) => {
+app.get('/movie/:id/videos', async (req: Request, res: Response) => {
   try {
       let id:number = parseInt(req.params.id as string);
-      let type:string = req.params.type as string;
     
-      const response = await axios.get(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${API_KEY}&language=en-US`)
+      const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`)
       res.json(response.data);
       
       } catch (error) {

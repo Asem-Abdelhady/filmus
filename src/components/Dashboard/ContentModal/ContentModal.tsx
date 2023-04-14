@@ -20,28 +20,8 @@ import YouTubeIcon from "@material-ui/icons/YouTube";
 import InfoIcon from "@material-ui/icons/Info";
 import Carousel from "../Carousel/Carousel";
 
-const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  paper: {
-    width: "90%",
-    height: "80%",
-    backgroundColor: "#39445a",
-    border: "1px solid #282c34",
-    borderRadius: 10,
-    color: "white",
-    boxShadow: theme.shadows[5],
-    // padding: theme.spacing(1, 1, 3),
-  },
-}));
-
 const ContentModal = () => {
   let { id } = useParams();
-  const classes = useStyles();
-  const [content, setContent] = useState();
   const [video, setVideo] = useState();
 
 
@@ -52,7 +32,7 @@ const ContentModal = () => {
 
   const fetchVideo = async () => {
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/movie/${id}/videos?api_key=a500ed6497632b594464be767b4d390d&language=en-US`
+      `${base_url}/movie/${id}/videos?api_key=a500ed6497632b594464be767b4d390d&language=en-US`
     );
 
     setVideo(data.results[0]?.key);
