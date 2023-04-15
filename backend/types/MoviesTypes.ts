@@ -1,8 +1,8 @@
 interface ISavedMovie {
-  name: String;
-  desc: String;
-  pic: String;
-  rate?: Number;
+  name: string;
+  desc: string;
+  pic: string;
+  rate?: number;
 }
 
 export default ISavedMovie;

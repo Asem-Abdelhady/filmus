@@ -1,11 +1,12 @@
-import { Schema } from "mongoose";
-import ISavedMovie from "../types/MoviesTypes";
+import { Schema } from 'mongoose';
+import ISavedMovedSchema from '../types/SavedMovieSchema';
 
-const watchedMovieSchema = new Schema<ISavedMovie>(
+const watchedMovieSchema = new Schema<ISavedMovedSchema>(
   {
-    name: { type: String, required: true },
-    desc: { type: String, required: true },
-    pic: { type: String, required: true },
+    _id: { type: Number },
+    name: { type: String },
+    desc: { type: String },
+    pic: { type: String },
     rate: { type: Number },
     date: { type: String },
   },

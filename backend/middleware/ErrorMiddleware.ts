@@ -1,11 +1,11 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, Response } from 'express';
 
-class HttpException extends Error {
+export default class HttpException extends Error {
   status?: number;
   message: string;
   error: string | null;
 
-  constructor(message: string, status: number, error: string | null) {
+  constructor(message: string, status: number, error?: string | null) {
     super(message);
     this.status = status;
     this.message = message;
@@ -19,7 +19,7 @@ export const errorHandler = (
   next: NextFunction
 ) => {
   const status = err.status || 500;
-  const message = err.message || "Something went wrong";
+  const message = err.message || 'Something went wrong';
 
   res.status(status).json({
     message: message,

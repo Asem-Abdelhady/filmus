@@ -1,8 +1,9 @@
-import { Schema } from "mongoose";
-import ISavedMovie from "../types/MoviesTypes";
+import { Schema } from 'mongoose';
+import ISavedMovedSchema from '../types/SavedMovieSchema';
 
-const toWatchMovieSchema = new Schema<ISavedMovie>(
+const toWatchMovieSchema = new Schema<ISavedMovedSchema>(
   {
+    _id: { type: Number, required: true },
     name: { type: String, required: true },
     desc: { type: String, required: true },
     pic: { type: String, required: true },

@@ -1,9 +1,9 @@
-import { model } from "mongoose";
-import toWatchMovieSchema from "../schemas/ToWatchMoveiesSchema";
-import ISavedMovie from "../types/MoviesTypes";
+import { model } from 'mongoose';
+import toWatchMovieSchema from '../schemas/ToWatchMoveiesSchema';
+import ISavedMovedSchema from '../types/SavedMovieSchema';
 
-const ToWatchMovieModel = model<ISavedMovie>(
-  "ToWatchMovie",
+const ToWatchMovieModel = model<ISavedMovedSchema>(
+  'ToWatchMovie',
   toWatchMovieSchema
 );
 
