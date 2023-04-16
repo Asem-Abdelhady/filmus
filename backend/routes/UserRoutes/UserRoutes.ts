@@ -22,7 +22,7 @@ userRouter
     .get(protect, userHandler.getLovedMoviesHandler)
     .post(protect, userHandler.createLovedMovieHandler);
 userRouter
-    .route('/:id/loved/movieId')
+    .route('/:id/loved/:movieId')
     .get(protect, userHandler.getLovedMovieHandler)
     .put(protect, userHandler.updateLovedMovieHandler)
     .delete(protect, userHandler.deleteLovedMovieHandler);
@@ -32,7 +32,7 @@ userRouter
     .get(protect, userHandler.getWatchedMoviesHandler)
     .post(protect, userHandler.createWatchedMovieHandler);
 userRouter
-    .route('/:id/watched/movieId')
+    .route('/:id/watched/:movieId')
     .get(protect, userHandler.getWatchedMovieHandler)
     .put(protect, userHandler.updateWatchedMovieHandler)
     .delete(protect, userHandler.deleteWatchedMovieHandler);
@@ -42,10 +42,9 @@ userRouter
     .get(protect, userHandler.getToWatchMoviesHandler)
     .post(protect, userHandler.createToWatchMovieHandler);
 userRouter
-    .route('/:id/to-watch/movieId')
+    .route('/:id/to-watch/:movieId')
     .get(protect, userHandler.getToWatchMovieHandler)
     .put(protect, userHandler.updateToWatchMovieHandler)
     .delete(protect, userHandler.deleteToWatchMovieHandler);
-// userRouter.route('/watched');
-// userRouter.route('/to-watch');
+
 export default userRouter;

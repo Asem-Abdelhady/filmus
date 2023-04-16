@@ -50,7 +50,8 @@ const userSchema = new Schema<IUser>(
                     required: [true, 'Movie with no description'],
                 },
                 pic: { type: String, required: [true, 'Movie with no pic'] },
-                rate: { type: Number },
+                rate: { type: Number, required: true },
+                movieId: { type: String, required: true },
             },
         },
         watchedMovies: {
@@ -66,6 +67,7 @@ const userSchema = new Schema<IUser>(
                 },
                 pic: { type: String, required: [true, 'Movie with no pic'] },
                 rate: { type: Number },
+                movieId: { type: String, required: true },
             },
         },
         toWatchMovies: {
@@ -81,6 +83,7 @@ const userSchema = new Schema<IUser>(
                 },
                 pic: { type: String, required: [true, 'Movie with no pic'] },
                 rate: { type: Number },
+                movieId: { type: String, required: true },
             },
         },
         resetPasswordToken: String,

@@ -234,11 +234,16 @@ export async function createToWatchMovie(
     model: Model<IUserSchema>
 ): Promise<ISavedMovieSchema> {
     try {
+        console.log('Here');
         const user = await model.findById(userId);
         if (user == null) throw new Error('No such a user');
         const sanitized = sanitizeSavedMovie(movieData);
+        console.log('Data: ', movieData);
+        console.log('Sana: ', sanitized);
+
         user.toWatchMovies.set(movieData.movieId, sanitized);
         await user.save();
+
         return sanitized;
     } catch (err) {
         throw ErrorHandler(err);
@@ -351,7 +356,6 @@ export async function loginUser(
     try {
         const user = await model.findOne({ email });
         if (user == null) throw new HttpException('User not found', 404);
-
         const isPasswordValid = await bcrypt.compare(
             sanitizedUser.password,
             user.password

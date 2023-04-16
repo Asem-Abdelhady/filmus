@@ -40,5 +40,8 @@ export function ErrorHandler(error: unknown): HttpException {
     }
 
     // Catch all unknown / unthought of errors
-    throw new HttpException('Unknown error occurred', 500);
+    throw new HttpException(
+        `Unknown error occurred here:--- ${error.message} ---`,
+        500
+    );
 }

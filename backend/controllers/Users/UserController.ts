@@ -149,6 +149,8 @@ class UsersHandler {
 
     createToWatchMovieHandler = asyncHandler(
         async (req: Request, res: Response) => {
+            console.log('Here');
+
             const toWatchMovie = await createToWatchMovie(
                 req.params.id,
                 req.body,
@@ -158,7 +160,6 @@ class UsersHandler {
         }
     );
 
-    // -----------------
     updateLovedMovieHandler = asyncHandler(
         async (req: Request, res: Response) => {
             const lovedMovie = await updateLovedMovie(
