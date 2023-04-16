@@ -1,15 +1,15 @@
 import express from 'express';
-const router = express.Router();
 import watchedMoviesHandler from '../../controllers/MoviesControllers/WatchedMoviesController';
 import { protect } from '../../middleware/AuthMiddleware';
+const watchedRouter = express.Router();
 
-router
-  .route('/')
-  .get(watchedMoviesHandler.getMoviesHandler)
-  .post(protect, watchedMoviesHandler.createMovieHandler);
-router
-  .route('/:id')
-  .get(watchedMoviesHandler.getMoviesHandler)
-  .put(protect, watchedMoviesHandler.updateMovieHandler)
-  .delete(protect, watchedMoviesHandler.deleteMovieHandler);
-module.exports = router;
+watchedRouter
+    .route('/')
+    .get(watchedMoviesHandler.getMoviesHandler)
+    .post(protect, watchedMoviesHandler.createMovieHandler);
+watchedRouter
+    .route('/:id')
+    .get(watchedMoviesHandler.getMoviesHandler)
+    .put(protect, watchedMoviesHandler.updateMovieHandler)
+    .delete(protect, watchedMoviesHandler.deleteMovieHandler);
+export default watchedRouter;

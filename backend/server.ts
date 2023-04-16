@@ -1,19 +1,23 @@
 import express from 'express';
+import * as Colors from 'colors.ts';
+
 import { connectDB } from './database/db';
 import { errorHandler } from './middleware/ErrorMiddleware';
-import * as Colors from 'colors.ts';
+
+import lovedRouter from './routes/MoviesRouters/LovedRoutes';
+import toWatchRouter from './routes/MoviesRouters/ToWatchRoutes';
+import watchedRouter from './routes/MoviesRouters/WatchedRoutes';
+import userRouter from './routes/UserRoutes/UserRoutes';
+
+import { PORT } from './utils/config';
+
 Colors.colors('', '');
 
-require('dotenv').config();
+export const db = async (): Promise<void> => {
+    await connectDB();
+};
 
-const lovedRouter = require('./routes/MoviesRouters/LovedRoutes');
-const toWatchRouter = require('./routes/MoviesRouters/ToWatchRoutes');
-const watchedRouter = require('./routes/MoviesRouters/WatchedRoutes');
-
-const userRouter = require('./routes/UserRoutes/UserRoutes');
-
-connectDB();
-const PORT = process.env.PORT || 5000;
+void db();
 
 const app = express();
 app.use(express.json());
@@ -26,5 +30,5 @@ app.use('/users', userRouter);
 
 app.use(errorHandler);
 app.listen(PORT, () => {
-  console.log(`Server started on the port ${PORT}`);
+    console.log(`Server started on the port ${PORT}`);
 });

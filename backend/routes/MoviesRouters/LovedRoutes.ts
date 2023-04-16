@@ -1,16 +1,16 @@
 import express from 'express';
-const router = express.Router();
 
 import lovedMoviesController from '../../controllers/MoviesControllers/LovedMoviesController';
 import { protect } from '../../middleware/AuthMiddleware';
+const lovedRouter = express.Router();
 
-router
-  .route('/')
-  .get(lovedMoviesController.getMoviesHandler)
-  .post(protect, lovedMoviesController.createMovieHandler);
-router
-  .route('/:id')
-  .get(lovedMoviesController.getMovieHandler)
-  .put(protect, lovedMoviesController.updateMovieHandler)
-  .delete(protect, lovedMoviesController.deleteMovieHandler);
-module.exports = router;
+lovedRouter
+    .route('/')
+    .get(lovedMoviesController.getMoviesHandler)
+    .post(protect, lovedMoviesController.createMovieHandler);
+lovedRouter
+    .route('/:id')
+    .get(lovedMoviesController.getMovieHandler)
+    .put(protect, lovedMoviesController.updateMovieHandler)
+    .delete(protect, lovedMoviesController.deleteMovieHandler);
+export default lovedRouter;

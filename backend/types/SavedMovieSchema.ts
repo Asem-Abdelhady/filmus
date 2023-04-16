@@ -1,7 +1,7 @@
-import ISavedMovie from './MoviesTypes';
+import type ISavedMovie from './MoviesTypes';
 
-interface ISavedMovedSchema extends ISavedMovie {
-  _id: number;
+interface ISavedMovieSchema extends ISavedMovie {
+    _id: number;
 }
 
-export default ISavedMovedSchema;
+export default ISavedMovieSchema;
