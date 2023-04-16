@@ -27,9 +27,6 @@ const Navbar = () => {
           <Link href="/filmus/movies">
             <DefaultButton text={"Movies"}/>
           </Link>
-          <Link href="/filmus/series">
-            <DefaultButton text={"Series"}/>
-          </Link>
           <Link href="/filmus/personal">
             <DefaultButton text={"Personal"}/>
           </Link>
