@@ -5,10 +5,11 @@ const watchedMovieSchema = new Schema<ISavedMovieSchema>(
     {
         _id: { type: Number },
         name: { type: String },
-        desc: { type: String },
-        pic: { type: String },
-        rate: { type: Number },
-        date: { type: String },
+        overview: { type: String },
+        poster_path: { type: String },
+        vote_average: { type: Number },
+        release_date: { type: String },
+        vote_count: { type: Number },
     },
     {
         timestamps: true,

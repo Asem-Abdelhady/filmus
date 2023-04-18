@@ -3,7 +3,7 @@ import type ISavedMovieSchema from './SavedMovieSchema';
 interface IUser {
     email: string;
     username: string;
-    pic: string;
+    poster_path: string;
     isAdmin: boolean;
     password: string;
     resetPasswordToken: string;
@@ -18,7 +18,7 @@ export interface IUserReturnType {
     username: string;
     email: string;
     isAdmin: boolean;
-    token: string;
+    access_token: string;
 }
 
 export interface IUserSanitizerType {

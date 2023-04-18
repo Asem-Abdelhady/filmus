@@ -95,7 +95,7 @@ class UsersHandler {
     getLovedMovieHandler = asyncHandler(async (req: Request, res: Response) => {
         const lovedMovie = await getLovedMovie(
             req.params.id,
-            req.params.movieId,
+            req.params.id,
             this.model
         );
         res.status(201).json(lovedMovie);
@@ -105,7 +105,7 @@ class UsersHandler {
         async (req: Request, res: Response) => {
             const watchedMovie = await getWatchedMovie(
                 req.params.id,
-                req.params.movieId,
+                req.params.id,
                 this.model
             );
             res.status(201).json(watchedMovie);
@@ -116,7 +116,7 @@ class UsersHandler {
         async (req: Request, res: Response) => {
             const toWatchMovie = await getToWatchMovie(
                 req.params.id,
-                req.params.movieId,
+                req.params.id,
                 this.model
             );
             res.status(201).json(toWatchMovie);
@@ -149,8 +149,6 @@ class UsersHandler {
 
     createToWatchMovieHandler = asyncHandler(
         async (req: Request, res: Response) => {
-            console.log('Here');
-
             const toWatchMovie = await createToWatchMovie(
                 req.params.id,
                 req.body,
@@ -196,33 +194,21 @@ class UsersHandler {
     // -----------------
     deleteLovedMovieHandler = asyncHandler(
         async (req: Request, res: Response) => {
-            await deelteLovedMovie(
-                req.params.id,
-                req.params.movieId,
-                this.model
-            );
+            await deelteLovedMovie(req.params.id, req.params.id, this.model);
             res.status(200).json({ message: `Movie ${req.params.id} deleted` });
         }
     );
 
     deleteWatchedMovieHandler = asyncHandler(
         async (req: Request, res: Response) => {
-            await deleteWatchedMovie(
-                req.params.id,
-                req.params.movieId,
-                this.model
-            );
+            await deleteWatchedMovie(req.params.id, req.params.id, this.model);
             res.status(200).json({ message: `Movie ${req.params.id} deleted` });
         }
     );
 
     deleteToWatchMovieHandler = asyncHandler(
         async (req: Request, res: Response) => {
-            await deleteToWatchMovie(
-                req.params.id,
-                req.params.movieId,
-                this.model
-            );
+            await deleteToWatchMovie(req.params.id, req.params.id, this.model);
             res.status(200).json({ message: `Movie ${req.params.id} deleted` });
         }
     );

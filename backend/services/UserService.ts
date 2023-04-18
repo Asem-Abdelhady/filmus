@@ -55,7 +55,7 @@ export async function createUser(
             username: newUser.username,
             email: newUser.email,
             isAdmin: newUser.isAdmin,
-            token: generateToken({
+            access_token: generateToken({
                 _id: newUser._id,
                 username: newUser.username,
                 email: newUser.email,
@@ -146,13 +146,13 @@ export async function getToWatchMovies(
 
 export async function getLovedMovie(
     userId: string,
-    movieId: string,
+    id: string,
     model: Model<IUserSchema>
 ): Promise<ISavedMovieSchema> {
     try {
         const user = await model.findById(userId);
         if (user == null) throw new Error('No such a user');
-        const movie = user.lovedMovies.get(movieId);
+        const movie = user.lovedMovies.get(id);
         if (movie == null) throw new Error('No such a movie');
         return movie;
     } catch (err) {
@@ -162,13 +162,13 @@ export async function getLovedMovie(
 
 export async function getWatchedMovie(
     userId: string,
-    movieId: string,
+    id: string,
     model: Model<IUserSchema>
 ): Promise<ISavedMovieSchema> {
     try {
         const user = await model.findById(userId);
         if (user == null) throw new Error('No such a user');
-        const movie = user.watchedMovies.get(movieId);
+        const movie = user.watchedMovies.get(id);
         if (movie == null) throw new Error('No such a movie');
         return movie;
     } catch (err) {
@@ -178,13 +178,13 @@ export async function getWatchedMovie(
 
 export async function getToWatchMovie(
     userId: string,
-    movieId: string,
+    id: string,
     model: Model<IUserSchema>
 ): Promise<ISavedMovieSchema> {
     try {
         const user = await model.findById(userId);
         if (user == null) throw new Error('No such a user');
-        const movie = user.toWatchMovies.get(movieId);
+        const movie = user.toWatchMovies.get(id);
         if (movie == null) throw new Error('No such a movie');
         return movie;
     } catch (err) {
@@ -200,10 +200,12 @@ export async function createLovedMovie(
     try {
         const user = await model.findById(userId);
         console.log('User ', user);
+        console.log('ID: ', userId);
+        console.log('Data: ', movieData);
 
         if (user == null) throw new Error('No such a user');
         const sanitized = sanitizeSavedMovie(movieData);
-        user.lovedMovies.set(movieData.movieId, sanitized);
+        user.lovedMovies.set(String(movieData.id), sanitized);
         await user.save();
         return sanitized;
     } catch (err) {
@@ -220,7 +222,7 @@ export async function createWatchedMovie(
         const user = await model.findById(userId);
         if (user == null) throw new Error('No such a user');
         const sanitized = sanitizeSavedMovie(movieData);
-        user.watchedMovies.set(movieData.movieId, sanitized);
+        user.watchedMovies.set(String(movieData.id), sanitized);
         await user.save();
         return sanitized;
     } catch (err) {
@@ -234,14 +236,11 @@ export async function createToWatchMovie(
     model: Model<IUserSchema>
 ): Promise<ISavedMovieSchema> {
     try {
-        console.log('Here');
         const user = await model.findById(userId);
         if (user == null) throw new Error('No such a user');
         const sanitized = sanitizeSavedMovie(movieData);
-        console.log('Data: ', movieData);
-        console.log('Sana: ', sanitized);
 
-        user.toWatchMovies.set(movieData.movieId, sanitized);
+        user.toWatchMovies.set(String(movieData.id), sanitized);
         await user.save();
 
         return sanitized;
@@ -259,7 +258,7 @@ export async function updateLovedMovie(
         const user = await model.findById(userId);
         if (user == null) throw new Error('No such a user');
         const sanitized = sanitizeSavedMovie(movieData);
-        user.lovedMovies.set(movieData.movieId, sanitized);
+        user.lovedMovies.set(String(movieData.id), sanitized);
         await user.save();
         return sanitized;
     } catch (err) {
@@ -276,7 +275,7 @@ export async function updateWatchedMovie(
         const user = await model.findById(userId);
         if (user == null) throw new Error('No such a user');
         const sanitized = sanitizeSavedMovie(movieData);
-        user.watchedMovies.set(movieData.movieId, sanitized);
+        user.watchedMovies.set(String(movieData.id), sanitized);
         await user.save();
         return sanitized;
     } catch (err) {
@@ -293,7 +292,7 @@ export async function updateToWatchMovie(
         const user = await model.findById(userId);
         if (user == null) throw new Error('No such a user');
         const sanitized = sanitizeSavedMovie(movieData);
-        user.toWatchMovies.set(movieData.movieId, sanitized);
+        user.toWatchMovies.set(String(movieData.id), sanitized);
         await user.save();
         return sanitized;
     } catch (err) {
@@ -303,13 +302,13 @@ export async function updateToWatchMovie(
 
 export async function deelteLovedMovie(
     userId: string,
-    movieId: string,
+    id: string,
     model: Model<IUserSchema>
 ): Promise<void> {
     try {
         const user = await model.findById(userId);
         if (user == null) throw new Error('No such a user');
-        user.lovedMovies.delete(movieId);
+        user.lovedMovies.delete(id);
         await user.save();
     } catch (err) {
         throw ErrorHandler(err);
@@ -318,13 +317,13 @@ export async function deelteLovedMovie(
 
 export async function deleteWatchedMovie(
     userId: string,
-    movieId: string,
+    id: string,
     model: Model<IUserSchema>
 ): Promise<void> {
     try {
         const user = await model.findById(userId);
         if (user == null) throw new Error('No such a user');
-        user.watchedMovies.delete(movieId);
+        user.watchedMovies.delete(id);
         await user.save();
     } catch (err) {
         throw ErrorHandler(err);
@@ -333,13 +332,13 @@ export async function deleteWatchedMovie(
 
 export async function deleteToWatchMovie(
     userId: string,
-    movieId: string,
+    id: string,
     model: Model<IUserSchema>
 ): Promise<void> {
     try {
         const user = await model.findById(userId);
         if (user == null) throw new Error('No such a user');
-        user.toWatchMovies.delete(movieId);
+        user.toWatchMovies.delete(id);
         await user.save();
     } catch (err) {
         throw ErrorHandler(err);
@@ -368,7 +367,7 @@ export async function loginUser(
             username: user.username,
             email: user.email,
             isAdmin: user.isAdmin,
-            token: generateToken({
+            access_token: generateToken({
                 _id: user._id,
                 username: user.username,
                 email: user.email,

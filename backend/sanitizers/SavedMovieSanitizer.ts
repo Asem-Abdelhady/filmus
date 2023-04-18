@@ -5,7 +5,7 @@ export function sanitizeSavedMovie(
     movie: ISavedMovieSchema
 ): ISavedMovieSchema {
     const sanitizedMovie: ISavedMovieSchema = { ...movie };
-    sanitizedMovie.name = sanitizeName(sanitizedMovie.name);
+    sanitizedMovie.title = sanitizeName(sanitizedMovie.title);
     return sanitizedMovie;
 }
 

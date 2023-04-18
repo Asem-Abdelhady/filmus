@@ -27,7 +27,7 @@ const userSchema = new Schema<IUser>(
             min: [6, 'Password must be at least 6 characters'],
             max: [50, 'Password must be less then 50 characters'],
         },
-        pic: {
+        poster_path: {
             type: String,
             required: true,
             default:
@@ -41,49 +41,64 @@ const userSchema = new Schema<IUser>(
         lovedMovies: {
             type: Map,
             of: {
-                name: {
+                title: {
                     type: String,
                     required: [true, 'Cannot save namesless movie'],
                 },
-                desc: {
+                overview: {
                     type: String,
                     required: [true, 'Movie with no description'],
                 },
-                pic: { type: String, required: [true, 'Movie with no pic'] },
-                rate: { type: Number, required: true },
-                movieId: { type: String, required: true },
+                poster_path: {
+                    type: String,
+                    required: [true, 'Movie with no poster_path'],
+                },
+                vote_average: { type: Number, required: true },
+                id: { type: String, required: true },
+                vote_count: { type: Number },
+                release_date: { type: String },
             },
         },
         watchedMovies: {
             type: Map,
             of: {
-                name: {
+                title: {
                     type: String,
                     required: [true, 'Cannot save namesless movie'],
                 },
-                desc: {
+                overview: {
                     type: String,
                     required: [true, 'Movie with no description'],
                 },
-                pic: { type: String, required: [true, 'Movie with no pic'] },
-                rate: { type: Number },
-                movieId: { type: String, required: true },
+                poster_path: {
+                    type: String,
+                    required: [true, 'Movie with no poster_path'],
+                },
+                vote_average: { type: Number },
+                id: { type: String, required: true },
+                vote_count: { type: Number },
+                release_date: { type: String },
             },
         },
         toWatchMovies: {
             type: Map,
             of: {
-                name: {
+                title: {
                     type: String,
                     required: [true, 'Cannot save namesless movie'],
                 },
-                desc: {
+                overview: {
                     type: String,
                     required: [true, 'Movie with no description'],
                 },
-                pic: { type: String, required: [true, 'Movie with no pic'] },
-                rate: { type: Number },
-                movieId: { type: String, required: true },
+                poster_path: {
+                    type: String,
+                    required: [true, 'Movie with no poster_path'],
+                },
+                vote_average: { type: Number },
+                id: { type: String, required: true },
+                vote_count: { type: Number },
+                release_date: { type: String },
             },
         },
         resetPasswordToken: String,

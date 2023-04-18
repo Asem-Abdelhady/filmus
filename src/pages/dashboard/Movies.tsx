@@ -7,7 +7,7 @@ import CardsList from "../../components/Dashboard/Trending/CardsList";
 import IApiWholeRsponse from "../../interfaces/ApiWholeResponse";
 
 const Movies = () => {
-  const URL = `${base_url}/discover/movie?api_key=a500ed6497632b594464be767b4d390d&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${1}`;
+  const URL = `${base_url}/discover/movie?api_key=a500ed6497632b594464be767b4d390d&language=en-US&sort_by=popularity.overview&include_adult=false&include_video=false&page=${1}`;
 
   const { data, error } = useFetch<IApiWholeRsponse>(URL);
 
