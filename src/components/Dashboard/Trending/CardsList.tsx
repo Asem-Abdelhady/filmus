@@ -5,20 +5,23 @@ import IApiWholeRsponse from "../../../interfaces/ApiWholeResponse";
 import Card from "./Card/Card";
 
 const CardsList = (responseData: IApiWholeRsponse) => {
-  const filteredResults = responseData.results.filter((card) => card.title!==undefined && card.poster_path!==undefined);
+  const filteredResults = responseData.results.filter(
+    (card) => card.title !== undefined && card.poster_path !== undefined
+  );
   const page_name = responseData.page_name;
-  const page = responseData.page
+  const page = responseData.page;
   let cards = filteredResults.map((card) => (
     <Card
       key={card.id}
       id={card.id}
-      imgPath={card.poster_path}
-      name={card.title}
+      poster_path={card.poster_path}
+      title={card.title}
       release_date={card.release_date ? card.release_date : "Uknown"}
-      rating={card.vote_count}
-      votes={card.vote_count}
+      vote_average={card.vote_count}
+      vote_count={card.vote_count}
       isPlanned={false}
       isFavourite={false}
+      overview={card.overview}
     />
   ));
 
@@ -37,7 +40,6 @@ const CardsList = (responseData: IApiWholeRsponse) => {
         {cards}
       </SimpleGrid>
     </VStack>
-    
   );
 };
 

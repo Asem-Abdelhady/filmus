@@ -1,66 +1,153 @@
-import { VStack, Text } from "@chakra-ui/react";
+// import useSWR from "swr";
+// import Layout from "@/components/layout";
+// import { ReactElement, useEffect, useState } from "react";
+// import { useSession } from "next-auth/react";
+
 import axios from "axios";
+import { useState, useEffect } from "react";
+import { Text, VStack } from "@chakra-ui/react";
+import IApiResponse from "../../interfaces/ApiResponse";
 import React from "react";
 import Navbar from "../../components/Dashboard/Navbar/Navbar";
 import CardsList from "../../components/Dashboard/Trending/CardsList";
+import { BASE_URL } from "../../config/config";
 
-// TODO : remove test data
-var dataFav: [string, string, boolean, boolean, string][] = [
-  [
-    "Taurus",
-    "Beautiful mountain.",
-    true,
-    true,
-    "https://cdn.britannica.com/67/19367-050-885866B4/Valley-Taurus-Mountains-Turkey.jpg",
-  ],
-  [
-    "Kilimanjaro",
-    "Pretty mountain.",
-    true,
-    true,
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Mt._Kilimanjaro_12.2006.JPG/495px-Mt._Kilimanjaro_12.2006.JPG",
-  ],
-  [
-    "Fuji volcano",
-    "Wonderful mountain.",
-    true,
-    false,
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Views_of_Mount_Fuji_from_%C5%8Cwakudani_20211202.jpg/408px-Views_of_Mount_Fuji_from_%C5%8Cwakudani_20211202.jpg",
-  ],
-];
-var dataPlan: [string, string, boolean, boolean, string][] = [
-  [
-    "Taurus",
-    "Beautiful mountain.",
-    true,
-    true,
-    "https://cdn.britannica.com/67/19367-050-885866B4/Valley-Taurus-Mountains-Turkey.jpg",
-  ],
-  [
-    "Kilimanjaro",
-    "Pretty mountain.",
-    true,
-    true,
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Mt._Kilimanjaro_12.2006.JPG/495px-Mt._Kilimanjaro_12.2006.JPG",
-  ],
-];
+// import axios from "axios";
+// import { decode } from "next-auth/jwt";
 
-const Personal = () => {
+// export default function Personal() {
+//   // const { data: session } = useSession();
+//   // const userData: ILoginResponse = session?.user as ILoginResponse;
+//   // const [movieData, setData] = useState(null);
+//   // const [isLoading, setLoading] = useState(false);
+
+//   // console.log("userData: ", userData);
+
+//   // useEffect(() => {
+//   //   setLoading(true);
+//   //   if (userData) {
+//   //     fetch(`/api/${userData._id}/loved/3/movie`, {
+//   //       method: "GET",
+//   //       headers: {
+//   //         authorization: "Bearer " + userData.token,
+//   //       },
+//   //     })
+//   //       .then((res) => res.json())
+//   //       .then((movieData) => {
+//   //         setData(movieData);
+//   //         setLoading(false);
+//   //       });
+//   //   }
+//   // }, []);
+
+//   return <div>personal</div>;
+// }
+// Personal.getLayout = function getLayout(page: ReactElement) {
+//   return <Layout>{page}</Layout>;
+// };
+
+// export async function getServerSideProps(context: {
+//   req: { cookies: { [x: string]: any } };
+// }) {
+//   console.log("Token: ", context.req.cookies["next-auth.session-token"]);
+
+//   return {
+//     props: { message: `Next.js is awesome` },
+//   };
+// }
+
+export default function Personal() {
+  const [loved, setLoved] = useState<IApiResponse[]>([]);
+  const [watched, setWatched] = useState<IApiResponse[]>([]);
+  const [toWatch, setToWatch] = useState<IApiResponse[]>([]);
+  const [isLoading, setLoading] = useState(false);
+
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDNjMDgxMzEwZWVkMzJkNjFkYmI4NmIiLCJ1c2VybmFtZSI6IkVsM29zOSIsImVtYWlsIjoiZWwzb3M5QGdtYWlsLmNvbSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4MTY1NTgyNywiZXhwIjoxNjgzMzgzODI3fQ.9US1pRymeuHp4OVfqt25I7xRRrlYrWCObiU1rprAfJg";
-
-  async function createRequest(token: string): Promise<any> {
-    const res = await axios.get(
-      "http://localhost:4000/users/643b32c2b1c4132890c6d8da/loved",
-      {
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDNkZTZiMDc2MzE3MmZjNzQ0YjNjNGEiLCJ1c2VybmFtZSI6IkVsM29zOSIsImVtYWlsIjoiZWwzb3M5QGdtYWlsLmNvbSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4MTc3ODM1MiwiZXhwIjoxNjgzNTA2MzUyfQ.ygELavC_JzmxpaBthg_JclRlZSL1G29ZnaArUbb5YTk";
+  const config = {
+    headers: { authorization: `Bearer ${token}` },
+  };
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get<IApiResponse[]>(`${BASE_URL}/users/643ded806a29e80a19380b30/loved`, {
         headers: { authorization: `Bearer ${token}` },
-      }
-    );
-    console.log(res);
-    return res;
-  }
-  createRequest(token);
-  return <div>Personal</div>;
-};
+      })
+      .then((res) => setLoved(res.data))
+      .catch((err) => console.log("Error: ", err));
 
-export default Personal;
+    axios
+      .get<IApiResponse[]>(
+        `${BASE_URL}/users/643ded806a29e80a19380b30/watched`,
+        {
+          headers: { authorization: `Bearer ${token}` },
+        }
+      )
+      .then((res) => setWatched(res.data))
+      .catch((err) => console.log("Error: ", err));
+    axios
+      .get<IApiResponse[]>(
+        `${BASE_URL}/users/643ded806a29e80a19380b30/to-watch`,
+        {
+          headers: { authorization: `Bearer ${token}` },
+        }
+      )
+      .then((res) => setToWatch(res.data))
+      .catch((err) => console.log("Error: ", err));
+  }, []);
+
+  return (
+    <>
+      <VStack w="100%" justify={"left"}>
+        <Text
+          w={"100%"}
+          fontSize="2xl"
+          fontFamily="Work sans"
+          paddingLeft={5}
+          justifyItems={"left"}
+        >
+          Favourite
+        </Text>
+        <CardsList
+          page={1}
+          results={loved}
+          total_pages={0}
+          total_results={0}
+          page_name={""}
+        />
+        <Text
+          w={"100%"}
+          fontSize="2xl"
+          fontFamily="Work sans"
+          paddingLeft={5}
+          justifyItems={"left"}
+        >
+          To Watch
+        </Text>
+        <CardsList
+          page={1}
+          results={toWatch}
+          total_pages={0}
+          total_results={0}
+          page_name={""}
+        />
+        <Text
+          w={"100%"}
+          fontSize="2xl"
+          fontFamily="Work sans"
+          paddingLeft={5}
+          justifyItems={"left"}
+        >
+          Watched
+        </Text>
+        <CardsList
+          page={1}
+          results={watched}
+          total_pages={0}
+          total_results={0}
+          page_name={""}
+        />
+      </VStack>
+    </>
+  );
+}

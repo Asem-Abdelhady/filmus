@@ -1,10 +1,11 @@
 export default interface ICardProps {
+  title: string;
+  overview: string;
+  poster_path: string | null;
+  vote_average: number;
   id: number;
-  imgPath: string;
-  name: string;
+  vote_count: number;
   release_date: string;
-  rating: number;
-  votes: number;
   isPlanned: boolean;
   isFavourite: boolean;
 }

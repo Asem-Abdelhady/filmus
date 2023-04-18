@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import {
   Box,
   Button,
@@ -16,7 +16,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
+  const handleLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // handle login logic here
   };
@@ -53,8 +53,7 @@ const Login = () => {
           <Box as="span" color="blue.500">
             Sign up
           </Box>
-        </Link>
-        {" "}
+        </Link>{" "}
         now.
       </Text>
     </Box>

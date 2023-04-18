@@ -1,6 +1,6 @@
 import React from "react";
 
-import { base_url } from "../../config/config";
+import { BASE_URL } from "../../config/config";
 import useFetch from "../../hooks/useFetch";
 import { useEffect, useState } from "react";
 import CardsList from "../../components/Dashboard/Trending/CardsList";
@@ -12,7 +12,7 @@ const Home = () => {
 
   const [page, setPage] = useState(1);
 
-  const URL = `${base_url}/trending/movie/week?api_key=a500ed6497632b594464be767b4d390d&page=${page}`;
+  const URL = `${BASE_URL}/imdb/trending/${page}`;
 
   const { data, error } = useFetch<IApiWholeRsponse>(URL);
 
@@ -21,24 +21,26 @@ const Home = () => {
     // eslint-disable-next-line
   }, [page]);
 
- 
   if (error) return <p>There is an error</p>;
   if (!data) return <p>Loading...</p>;
 
   console.log(data);
 
-  
   return (
     <div>
-        <CardsList
+      <CardsList
         page_name="Trending this Week"
         page={data.page}
         results={data.results}
         total_pages={data.total_pages}
         total_results={data.total_results}
       />
-      <CustomPagination setPage={setPage} curPage={data.page} numOfPages={data.total_pages} />
-    </div> 
+      <CustomPagination
+        setPage={setPage}
+        curPage={data.page}
+        numOfPages={data.total_pages}
+      />
+    </div>
   );
 };
 
