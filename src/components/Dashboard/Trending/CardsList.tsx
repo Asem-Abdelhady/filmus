@@ -14,8 +14,8 @@ const CardsList = (responseData: IApiWholeRsponse) => {
       id={card.id}
       imgPath={card.poster_path}
       name={card.title}
-      date={card.release_date? card.release_date: "Unknown"}
-      rating={card.vote_average}
+      release_date={card.release_date ? card.release_date : "Uknown"}
+      rating={card.vote_count}
       votes={card.vote_count}
       isPlanned={false}
       isFavourite={false}

@@ -1,10 +1,10 @@
-import { model } from "mongoose";
-import watchedMovieSchema from "../schemas/WatchedMoviesSchema";
-import ISavedMovie from "../types/MoviesTypes";
+import { model } from 'mongoose';
+import watchedMovieSchema from '../schemas/WatchedMoviesSchema';
+import type ISavedMovieSchema from '../types/SavedMovieSchema';
 
-const WatchedMovieModel = model<ISavedMovie>(
-  "ToWatchMovie",
-  watchedMovieSchema
+const WatchedMovieModel = model<ISavedMovieSchema>(
+    'Watched',
+    watchedMovieSchema
 );
 
 export default WatchedMovieModel;

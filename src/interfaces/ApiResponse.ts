@@ -12,7 +12,7 @@ export default interface IApiResponse {
   popularity: number;
   vote_count: number;
   video: boolean;
-  vote_average: number;
+  vote_count: number;
 }
 
 

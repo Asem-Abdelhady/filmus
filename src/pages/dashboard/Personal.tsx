@@ -1,4 +1,5 @@
 import { VStack, Text } from "@chakra-ui/react";
+import axios from "axios";
 import React from "react";
 import Navbar from "../../components/Dashboard/Navbar/Navbar";
 import CardsList from "../../components/Dashboard/Trending/CardsList";
@@ -45,6 +46,20 @@ var dataPlan: [string, string, boolean, boolean, string][] = [
 ];
 
 const Personal = () => {
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDNjMDgxMzEwZWVkMzJkNjFkYmI4NmIiLCJ1c2VybmFtZSI6IkVsM29zOSIsImVtYWlsIjoiZWwzb3M5QGdtYWlsLmNvbSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4MTY1NTgyNywiZXhwIjoxNjgzMzgzODI3fQ.9US1pRymeuHp4OVfqt25I7xRRrlYrWCObiU1rprAfJg";
+
+  async function createRequest(token: string): Promise<any> {
+    const res = await axios.get(
+      "http://localhost:4000/users/643b32c2b1c4132890c6d8da/loved",
+      {
+        headers: { authorization: `Bearer ${token}` },
+      }
+    );
+    console.log(res);
+    return res;
+  }
+  createRequest(token);
   return <div>Personal</div>;
 };
 
