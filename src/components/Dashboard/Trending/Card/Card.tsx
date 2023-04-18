@@ -5,9 +5,9 @@ import React from "react";
 import DefaultButton from "../../../Common/DefaultButton";
 
 import { img_300, unavailable } from "../../../../config/config";
-import { MdOutlineFavoriteBorder } from "react-icons/md";
-import { AiOutlineStar } from "react-icons/ai";
-
+import {MdOutlineFavoriteBorder} from "react-icons/md";
+import {AiOutlineStar} from "react-icons/ai";
+import { Link } from "react-router-dom";
 import ICardProps from "./CardProps";
 import axios from "axios";
 
@@ -40,6 +40,9 @@ const Card = (props: ICardProps) => {
     createRequest(token);
   }
   return (
+    <Link to={'/filmus/movie/'+props.id } className="media">
+    
+
     <VStack p={5} shadow="md" borderWidth="1px" minWidth={300} maxWidth={400}>
       <img
         style={{ borderRadius: "5px" }}
@@ -61,14 +64,14 @@ const Card = (props: ICardProps) => {
         Release release_date: {props.release_date}
       </Text>
 
-      <Text w={"100%"} fontSize="s" fontFamily="Work sans">
-        rating: {props.rating}
-      </Text>
-      <Text w={"100%"} fontSize="s" fontFamily="Work sans">
-        votes: {props.votes}
-      </Text>
+        <Text w={"100%"} fontSize="s" fontFamily="Work sans">
+          rating: {props.rating}
+        </Text>
+        <Text w={"100%"} fontSize="s" fontFamily="Work sans">
+          votes: {props.votes}
+        </Text>
 
-      <HStack w={"100%"} bg="white" justifyContent={"left"}>
+        <HStack w={"100%"} bg="white" justifyContent={"left"}>
         <DefaultButton text={"Watch now!"} />
         <IconButton
           colorScheme="yellow"
@@ -82,7 +85,10 @@ const Card = (props: ICardProps) => {
           icon={<MdOutlineFavoriteBorder />}
         />
       </HStack>
-    </VStack>
+      </VStack>
+
+    </Link>
+      
   );
 };
 

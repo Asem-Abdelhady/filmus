@@ -4,6 +4,7 @@ import Home from "./pages/dashboard/Home";
 import Movies from "./pages/dashboard/Movies";
 import Personal from "./pages/dashboard/Personal";
 import Profile from "./pages/dashboard/Profile";
+import ContentModal from "./components/Dashboard/ContentModal/ContentModal";
 import Login from "./pages/auth/login";
 import Signup from "./pages/auth/signup";
 import "./App.css";
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/filmus/movies" element={<Movies />} />
         <Route path="/filmus/personal" element={<Personal />} />
         <Route path="/filmus/profile" element={<Profile />} />
+        <Route path="/filmus/movie/:id" element={<ContentModal/>}/>
         <Route path="/filmus/login" element={<Login/>}/>
         <Route path="/filmus/signup" element={<Signup/>}/>
       </Routes>
