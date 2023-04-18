@@ -11,7 +11,7 @@ import CustomPagination from "../../components/Dashboard/Pagination/Pagination";
 const Movies = () => {
   const [page, setPage] = useState(1);
 
-  const URL = `${BASE_URL}/discover/movie?api_key=a500ed6497632b594464be767b4d390d&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`;
+  const URL = `${BASE_URL}/imdb/movies/${page}`;
 
   const { data, error } = useFetch<IApiWholeRsponse>(URL);
 

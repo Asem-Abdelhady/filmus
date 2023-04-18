@@ -26,12 +26,12 @@ const ContentModal = () => {
   let { id } = useParams();
   const [video, setVideo] = useState();
 
-  const URL = `${BASE_URL}/movie/${id}?api_key=a500ed6497632b594464be767b4d390d&language=en-US`;
+  const URL = `${BASE_URL}/imdb/movie/${id}`;
   const { data, error } = useFetch<IMovieData>(URL);
 
   const fetchVideo = async () => {
     const { data } = await axios.get(
-      `${BASE_URL}/movie/${id}/videos?api_key=a500ed6497632b594464be767b4d390d&language=en-US`
+      `${BASE_URL}/imdb/videos/${id}`
     );
 
     setVideo(data.results[0]?.key);
