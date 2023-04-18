@@ -8,23 +8,19 @@ import {
   Link,
 } from "@chakra-ui/react";
 import React from "react";
-  
-function ProfilePicture ({url}) {
-  return  (
-    <Image
-      borderRadius='full'
-      boxSize='45px'
-      src={url}
-      alt='Profile picture'
-    />
-  );
-};
+import ProfilePicture from "./ProfilePicture";
 
-const ProfileButton = ({name, surname, imageUrl}) => {
+interface IProps {
+  name: string;
+  surname: string;
+  imageUrl: string;
+}
+
+const ProfileButton = (props: IProps) => {
   return (
     <Menu>
-      <MenuButton as={Button} colorScheme='none' size='sm'>
-        <ProfilePicture url={imageUrl}/>
+      <MenuButton as={Button} colorScheme="none" size="sm">
+        <ProfilePicture pic_path={props.imageUrl} />
       </MenuButton>
       <MenuList>
         <Link href="/filmus/profile">

@@ -4,6 +4,8 @@ import { getImdbMovies, getTrending } from '../../services/ImdbService';
 
 class ImdbHandler {
     getTrendingHandler = asyncHandler(async (req: Request, res: Response) => {
+        console.log('Here');
+
         const trending = await getTrending(req.params.page);
         res.status(200).json(trending);
     });
