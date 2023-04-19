@@ -1,4 +1,4 @@
-export default interface IMovieData {
+interface IMovieData {
     adult: boolean;
     backdrop_path: string | null;
     belongs_to_collection: object | null;
@@ -30,3 +30,5 @@ export default interface IMovieData {
     vote_average: number;
     vote_count: number;
 }
+
+export default IMovieData;

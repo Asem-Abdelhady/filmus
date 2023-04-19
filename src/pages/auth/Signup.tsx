@@ -17,8 +17,8 @@ import { BASE_URL } from "../../config/config";
 import IRegisterData from "../../interfaces/RegisterData";
 
 interface IProps {
-  setToken: (userToken: { token: string }) => void;
-  setUserId: (userId: { userId: string }) => void;
+  setToken: (userToken: string) => void;
+  setUserId: (userId: string) => void;
 }
 
 const Signup = (props: IProps) => {
@@ -36,8 +36,8 @@ const Signup = (props: IProps) => {
     e.preventDefault();
     const res = await axios.post<ILoginResponse>(`${BASE_URL}/users`, body);
 
-    props.setToken({ token: res.data.access_token });
-    props.setUserId({ userId: res.data._id });
+    props.setToken(res.data.access_token);
+    props.setUserId(res.data._id);
   };
 
   return (

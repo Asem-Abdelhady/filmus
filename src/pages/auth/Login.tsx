@@ -18,8 +18,8 @@ import { redirect } from "react-router-dom";
 import ILoginResponse from "../../interfaces/LoginResponse";
 
 interface IProps {
-  setToken: (userToken: { token: string }) => void;
-  setUserId: (userId: { userId: string }) => void;
+  setToken: (userToken: string) => void;
+  setUserId: (userId: string) => void;
 }
 const Login = (props: IProps) => {
   const [email, setEmail] = useState("");
@@ -35,8 +35,8 @@ const Login = (props: IProps) => {
       `${BASE_URL}/users/login`,
       body
     );
-    props.setToken({ token: res.data.access_token });
-    props.setUserId({ userId: res.data._id });
+    props.setToken(res.data.access_token);
+    props.setUserId(res.data._id);
   };
 
   return (

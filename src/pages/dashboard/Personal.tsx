@@ -1,60 +1,12 @@
-// import useSWR from "swr";
-// import Layout from "@/components/layout";
-// import { ReactElement, useEffect, useState } from "react";
-// import { useSession } from "next-auth/react";
-
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Text, VStack } from "@chakra-ui/react";
+import { Divider, Text, VStack } from "@chakra-ui/react";
 import IApiResponse from "../../interfaces/ApiResponse";
 import React from "react";
 import Navbar from "../../components/Dashboard/Navbar/Navbar";
 import CardsList from "../../components/Dashboard/Trending/CardsList";
 import { BASE_URL } from "../../config/config";
-
-// import axios from "axios";
-// import { decode } from "next-auth/jwt";
-
-// export default function Personal() {
-//   // const { data: session } = useSession();
-//   // const userData: ILoginResponse = session?.user as ILoginResponse;
-//   // const [movieData, setData] = useState(null);
-//   // const [isLoading, setLoading] = useState(false);
-
-//   // console.log("userData: ", userData);
-
-//   // useEffect(() => {
-//   //   setLoading(true);
-//   //   if (userData) {
-//   //     fetch(`/api/${userData._id}/loved/3/movie`, {
-//   //       method: "GET",
-//   //       headers: {
-//   //         authorization: "Bearer " + userData.token,
-//   //       },
-//   //     })
-//   //       .then((res) => res.json())
-//   //       .then((movieData) => {
-//   //         setData(movieData);
-//   //         setLoading(false);
-//   //       });
-//   //   }
-//   // }, []);
-
-//   return <div>personal</div>;
-// }
-// Personal.getLayout = function getLayout(page: ReactElement) {
-//   return <Layout>{page}</Layout>;
-// };
-
-// export async function getServerSideProps(context: {
-//   req: { cookies: { [x: string]: any } };
-// }) {
-//   console.log("Token: ", context.req.cookies["next-auth.session-token"]);
-
-//   return {
-//     props: { message: `Next.js is awesome` },
-//   };
-// }
+import fetchMovies from "../../utils/fetchMovies";
 
 export default function Personal() {
   const [loved, setLoved] = useState<IApiResponse[]>([]);
@@ -69,39 +21,25 @@ export default function Personal() {
   };
   useEffect(() => {
     setLoading(true);
-    axios
-      .get<IApiResponse[]>(`${BASE_URL}/users/${userId}/loved`, {
-        headers: { authorization: `Bearer ${token}` },
-      })
-      .then((res) => setLoved(res.data))
-      .catch((err) => console.log("Error: ", err));
-
-    axios
-      .get<IApiResponse[]>(`${BASE_URL}/users/${userId}/watched`, {
-        headers: { authorization: `Bearer ${token}` },
-      })
-      .then((res) => setWatched(res.data))
-      .catch((err) => console.log("Error: ", err));
-    axios
-      .get<IApiResponse[]>(`${BASE_URL}/users/${userId}/to-watch`, {
-        headers: { authorization: `Bearer ${token}` },
-      })
-      .then((res) => setToWatch(res.data))
-      .catch((err) => console.log("Error: ", err));
+    fetchMovies("loved").then((res) => setLoved(res));
+    fetchMovies("watched").then((res) => setWatched(res));
+    fetchMovies("to-watch").then((res) => setToWatch(res));
+    setLoading(false);
   }, []);
 
-  return (
+  return !isLoading ? (
     <>
       <VStack w="100%" justify={"left"}>
         <Text
           w={"100%"}
-          fontSize="2xl"
+          fontSize="5xl"
           fontFamily="Work sans"
           paddingLeft={5}
           justifyItems={"left"}
         >
           Favourite
         </Text>
+        <Divider orientation={"horizontal"} colorScheme={"blackAlpha"} />
         <CardsList
           page={1}
           results={loved}
@@ -109,15 +47,19 @@ export default function Personal() {
           total_results={0}
           page_name={""}
         />
+        <Divider orientation={"horizontal"} />
+
         <Text
           w={"100%"}
-          fontSize="2xl"
+          fontSize="5xl"
           fontFamily="Work sans"
           paddingLeft={5}
           justifyItems={"left"}
         >
           To Watch
         </Text>
+        <Divider orientation={"horizontal"} />
+
         <CardsList
           page={1}
           results={toWatch}
@@ -125,15 +67,19 @@ export default function Personal() {
           total_results={0}
           page_name={""}
         />
+        <Divider orientation={"horizontal"} />
+
         <Text
           w={"100%"}
-          fontSize="2xl"
+          fontSize="5xl"
           fontFamily="Work sans"
           paddingLeft={5}
           justifyItems={"left"}
         >
           Watched
         </Text>
+        <Divider orientation={"horizontal"} colorScheme={"blackAlpha"} />
+
         <CardsList
           page={1}
           results={watched}
@@ -143,5 +89,7 @@ export default function Personal() {
         />
       </VStack>
     </>
+  ) : (
+    <div>Loading</div>
   );
 }

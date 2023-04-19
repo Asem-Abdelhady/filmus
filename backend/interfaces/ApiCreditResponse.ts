@@ -27,8 +27,10 @@ interface Crew {
     job: string;
 }
 
-export default interface ICreditsData {
+interface ICreditsData {
     id: number;
     cast: Cast;
     crew: Crew;
 }
+
+export default ICreditsData;

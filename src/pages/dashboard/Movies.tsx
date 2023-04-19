@@ -1,19 +1,14 @@
 import React from "react";
 
-import { BASE_URL } from "../../config/config";
-import useFetch from "../../hooks/useFetch";
 import { useEffect, useState } from "react";
 
 import CardsList from "../../components/Dashboard/Trending/CardsList";
-import IApiWholeRsponse from "../../interfaces/ApiWholeResponse";
 import CustomPagination from "../../components/Dashboard/Pagination/Pagination";
+import fetchImdb from "../../utils/fetchImdb";
 
 const Movies = () => {
   const [page, setPage] = useState(1);
-
-  const URL = `${BASE_URL}/imdb/movies/${page}`;
-
-  const { data, error } = useFetch<IApiWholeRsponse>(URL);
+  const { data, error } = fetchImdb("movies", page);
 
   useEffect(() => {
     // window.scroll(0, 0);

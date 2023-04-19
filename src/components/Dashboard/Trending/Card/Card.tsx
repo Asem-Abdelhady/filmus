@@ -1,4 +1,14 @@
-import { Text, HStack, VStack, IconButton } from "@chakra-ui/react";
+import {
+  Text,
+  HStack,
+  VStack,
+  IconButton,
+  Box,
+  Wrap,
+  WrapItem,
+  Flex,
+  Button,
+} from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
 import React from "react";
 
@@ -14,8 +24,8 @@ import ICardProps from "./CardProps";
 import axios from "axios";
 
 const Card = (props: ICardProps) => {
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDNkZTZiMDc2MzE3MmZjNzQ0YjNjNGEiLCJ1c2VybmFtZSI6IkVsM29zOSIsImVtYWlsIjoiZWwzb3M5QGdtYWlsLmNvbSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4MTc3ODM1MiwiZXhwIjoxNjgzNTA2MzUyfQ.ygELavC_JzmxpaBthg_JclRlZSL1G29ZnaArUbb5YTk";
+  const token = localStorage.getItem("token");
+  const userId = localStorage.getItem("userId");
   const config = {
     headers: { authorization: `Bearer ${token}` },
   };
@@ -32,7 +42,7 @@ const Card = (props: ICardProps) => {
 
   async function addToFavorite(): Promise<any> {
     const res = await axios.post(
-      `${BASE_URL}/users/643ded806a29e80a19380b30/loved`,
+      `${BASE_URL}/users/${userId}/loved`,
       body,
       config
     );
@@ -41,7 +51,7 @@ const Card = (props: ICardProps) => {
 
   async function addToWatch(): Promise<any> {
     const res = await axios.post(
-      `${BASE_URL}/users/643ded806a29e80a19380b30/to-watch`,
+      `${BASE_URL}/users/${userId}/to-watch`,
       body,
       config
     );
@@ -50,7 +60,7 @@ const Card = (props: ICardProps) => {
 
   async function addToWatched(): Promise<any> {
     const res = await axios.post(
-      `${BASE_URL}/users/643ded806a29e80a19380b30/watched`,
+      `${BASE_URL}/users/${userId}/watched`,
       body,
       config
     );
@@ -86,28 +96,33 @@ const Card = (props: ICardProps) => {
       </Text>
 
       <HStack w={"100%"} bg="white" justifyContent={"left"}>
-        <Link to={"/filmus/movie/" + props.id} className="media">
-          <DefaultButton text={"Details"} />
-        </Link>
-
-        <IconButton
-          onClick={addToWatch}
-          colorScheme="yellow"
-          aria-label="Star"
-          icon={<AiOutlineStar />}
-        />
-        <IconButton
-          onClick={addToFavorite}
-          colorScheme="pink"
-          aria-label="Heart"
-          icon={<MdOutlineFavoriteBorder />}
-        />
-        <IconButton
-          onClick={addToWatched}
-          colorScheme="green"
-          aria-label="File"
-          icon={<FaRegSave />}
-        />
+        <Wrap>
+          <Box height={"100%"}>
+            <Link to={"/filmus/movie/" + props.id} className="media">
+              <Button colorScheme={"teal"}>Details</Button>
+            </Link>
+          </Box>
+          <WrapItem>
+            <IconButton
+              onClick={addToWatch}
+              colorScheme="yellow"
+              aria-label="Star"
+              icon={<AiOutlineStar />}
+            />
+          </WrapItem>
+          <IconButton
+            onClick={addToFavorite}
+            colorScheme="pink"
+            aria-label="Heart"
+            icon={<MdOutlineFavoriteBorder />}
+          />
+          <IconButton
+            onClick={addToWatched}
+            colorScheme="green"
+            aria-label="File"
+            icon={<FaRegSave />}
+          />
+        </Wrap>
       </HStack>
     </VStack>
   );

@@ -15,10 +15,12 @@ interface IApiResponse {
     vote_average: number;
 }
 
-export default interface IApiWholeResponse {
+interface IApiWholeResponse {
     page_name: string;
     page: number;
     results: IApiResponse[];
     total_pages: number;
     total_results: number;
 }
+
+export default IApiWholeResponse;

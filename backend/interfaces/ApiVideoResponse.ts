@@ -11,7 +11,9 @@ interface Video {
     id: string;
 }
 
-export default interface IVideoData {
+interface IVideoData {
     id: number;
     results: Video[];
 }
+
+export default IVideoData;
