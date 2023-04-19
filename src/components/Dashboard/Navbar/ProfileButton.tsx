@@ -17,6 +17,10 @@ interface IProps {
 }
 
 const ProfileButton = (props: IProps) => {
+  function logOut() {
+    localStorage.clear();
+    window.location.reload();
+  }
   return (
     <Menu>
       <MenuButton as={Button} colorScheme="none" size="sm">
@@ -26,7 +30,7 @@ const ProfileButton = (props: IProps) => {
         <Link href="/filmus/profile">
           <MenuItem>Profile</MenuItem>
         </Link>
-        <MenuItem>Logout</MenuItem>
+        <MenuItem onClick={logOut}>Logout</MenuItem>
       </MenuList>
     </Menu>
   );

@@ -11,14 +11,32 @@ import {
   Link,
   useColorModeValue,
 } from "@chakra-ui/react";
+import axios from "axios";
+import { BASE_URL } from "../../config/config";
+import { redirect } from "react-router-dom";
 
-const Login = () => {
+import ILoginResponse from "../../interfaces/LoginResponse";
+
+interface IProps {
+  setToken: (userToken: { token: string }) => void;
+  setUserId: (userId: { userId: string }) => void;
+}
+const Login = (props: IProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e: FormEvent<HTMLFormElement>) => {
+  const body = {
+    email: email,
+    password: password,
+  };
+  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // handle login logic here
+    const res = await axios.post<ILoginResponse>(
+      `${BASE_URL}/users/login`,
+      body
+    );
+    props.setToken({ token: res.data.access_token });
+    props.setUserId({ userId: res.data._id });
   };
 
   return (

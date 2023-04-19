@@ -62,36 +62,30 @@ export default function Personal() {
   const [toWatch, setToWatch] = useState<IApiResponse[]>([]);
   const [isLoading, setLoading] = useState(false);
 
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDNkZTZiMDc2MzE3MmZjNzQ0YjNjNGEiLCJ1c2VybmFtZSI6IkVsM29zOSIsImVtYWlsIjoiZWwzb3M5QGdtYWlsLmNvbSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4MTc3ODM1MiwiZXhwIjoxNjgzNTA2MzUyfQ.ygELavC_JzmxpaBthg_JclRlZSL1G29ZnaArUbb5YTk";
+  const token = localStorage.getItem("token");
+  const userId = localStorage.getItem("userId");
   const config = {
     headers: { authorization: `Bearer ${token}` },
   };
   useEffect(() => {
     setLoading(true);
     axios
-      .get<IApiResponse[]>(`${BASE_URL}/users/643ded806a29e80a19380b30/loved`, {
+      .get<IApiResponse[]>(`${BASE_URL}/users/${userId}/loved`, {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((res) => setLoved(res.data))
       .catch((err) => console.log("Error: ", err));
 
     axios
-      .get<IApiResponse[]>(
-        `${BASE_URL}/users/643ded806a29e80a19380b30/watched`,
-        {
-          headers: { authorization: `Bearer ${token}` },
-        }
-      )
+      .get<IApiResponse[]>(`${BASE_URL}/users/${userId}/watched`, {
+        headers: { authorization: `Bearer ${token}` },
+      })
       .then((res) => setWatched(res.data))
       .catch((err) => console.log("Error: ", err));
     axios
-      .get<IApiResponse[]>(
-        `${BASE_URL}/users/643ded806a29e80a19380b30/to-watch`,
-        {
-          headers: { authorization: `Bearer ${token}` },
-        }
-      )
+      .get<IApiResponse[]>(`${BASE_URL}/users/${userId}/to-watch`, {
+        headers: { authorization: `Bearer ${token}` },
+      })
       .then((res) => setToWatch(res.data))
       .catch((err) => console.log("Error: ", err));
   }, []);

@@ -24,6 +24,10 @@
             "error",
             "single"
         ],
+        "semi": [
+            "error",
+            "always"
+        ],
         "constructor-super": [
             "error"
         ]

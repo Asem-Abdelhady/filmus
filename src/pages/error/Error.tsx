@@ -1,7 +1,17 @@
 import React from "react";
 
-const Error = () => {
-  return <div>Error</div>;
+const PageNotFound = () => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      Page not found
+    </div>
+  );
 };
 
-export default Error;
+export default PageNotFound;
