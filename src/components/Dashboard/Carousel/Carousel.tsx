@@ -4,7 +4,9 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { img_300, noPicture } from "../../../config/config";
 import "./Carousel.css";
-
+import {
+  BASE_URL,
+} from "../../../config/config";
 
 const handleDragStart = (e) => e.preventDefault();
 
@@ -25,7 +27,7 @@ const Gallery = ({ id }) => {
 
   const fetchCredits = async () => {
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/movie/${id}/credits?api_key=a500ed6497632b594464be767b4d390d&language=en-US`
+      `${BASE_URL}/imdb/credits/${id}`
     );
     setCredits(data.cast);
   };
