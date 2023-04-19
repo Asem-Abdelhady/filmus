@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { img_300, noPicture } from "../../../config/config";
@@ -7,11 +7,16 @@ import "./Carousel.css";
 import {
   BASE_URL,
 } from "../../../config/config";
+import ICreditsData, { ICast } from "../../../interfaces/ApiCreditsResponse";
 
-const handleDragStart = (e) => e.preventDefault();
+const handleDragStart = (e:any):React.DragEventHandler<HTMLImageElement> => e.preventDefault();
 
-const Gallery = ({ id }) => {
-  const [credits, setCredits] = useState([]);
+interface IProps{
+  id:string
+}
+
+const Gallery = (props:IProps) => {
+  const [credits, setCredits] = useState<ICast[]>([]);
 
   const responsive = {
     0: {
@@ -26,8 +31,8 @@ const Gallery = ({ id }) => {
   };
 
   const fetchCredits = async () => {
-    const { data } = await axios.get(
-      `${BASE_URL}/imdb/credits/${id}`
+    const { data } = await axios.get<ICreditsData>(
+      `${BASE_URL}/imdb/credits/${props.id}`
     );
     setCredits(data.cast);
   };
