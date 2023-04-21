@@ -67,7 +67,10 @@ class UsersHandler {
 
     getLovedMoviesHandler = asyncHandler(
         async (req: Request, res: Response) => {
-            const lovedMovies = await getLovedMovies(req.params.id, this.model);
+            const lovedMovies = await getLovedMovies(
+                req.params.userId,
+                this.model
+            );
             res.status(200).json(lovedMovies);
         }
     );
@@ -75,7 +78,7 @@ class UsersHandler {
     getWatchedMoviesHandler = asyncHandler(
         async (req: Request, res: Response) => {
             const watchedMovies = await getWatchedMovies(
-                req.params.id,
+                req.params.userId,
                 this.model
             );
             res.status(200).json(watchedMovies);
@@ -85,7 +88,7 @@ class UsersHandler {
     getToWatchMoviesHandler = asyncHandler(
         async (req: Request, res: Response) => {
             const toWatchMovies = await getToWatchMovies(
-                req.params.id,
+                req.params.userId,
                 this.model
             );
             res.status(200).json(toWatchMovies);
@@ -94,7 +97,7 @@ class UsersHandler {
 
     getLovedMovieHandler = asyncHandler(async (req: Request, res: Response) => {
         const lovedMovie = await getLovedMovie(
-            req.params.id,
+            req.params.userId,
             req.params.id,
             this.model
         );
@@ -104,7 +107,7 @@ class UsersHandler {
     getWatchedMovieHandler = asyncHandler(
         async (req: Request, res: Response) => {
             const watchedMovie = await getWatchedMovie(
-                req.params.id,
+                req.params.userId,
                 req.params.id,
                 this.model
             );
@@ -115,7 +118,7 @@ class UsersHandler {
     getToWatchMovieHandler = asyncHandler(
         async (req: Request, res: Response) => {
             const toWatchMovie = await getToWatchMovie(
-                req.params.id,
+                req.params.userId,
                 req.params.id,
                 this.model
             );
@@ -128,7 +131,7 @@ class UsersHandler {
     createLovedMovieHandler = asyncHandler(
         async (req: Request, res: Response) => {
             const lovedMovie = await createLovedMovie(
-                req.params.id,
+                req.params.userId,
                 req.body,
                 this.model
             );
@@ -139,7 +142,7 @@ class UsersHandler {
     createWatchedMovieHandler = asyncHandler(
         async (req: Request, res: Response) => {
             const watchedMovie = await createWatchedMovie(
-                req.params.id,
+                req.params.userId,
                 req.body,
                 this.model
             );
@@ -150,7 +153,7 @@ class UsersHandler {
     createToWatchMovieHandler = asyncHandler(
         async (req: Request, res: Response) => {
             const toWatchMovie = await createToWatchMovie(
-                req.params.id,
+                req.params.userId,
                 req.body,
                 this.model
             );
@@ -194,21 +197,33 @@ class UsersHandler {
     // -----------------
     deleteLovedMovieHandler = asyncHandler(
         async (req: Request, res: Response) => {
-            await deelteLovedMovie(req.params.id, req.params.id, this.model);
+            await deelteLovedMovie(
+                req.params.userId,
+                req.params.id,
+                this.model
+            );
             res.status(200).json({ message: `Movie ${req.params.id} deleted` });
         }
     );
 
     deleteWatchedMovieHandler = asyncHandler(
         async (req: Request, res: Response) => {
-            await deleteWatchedMovie(req.params.id, req.params.id, this.model);
+            await deleteWatchedMovie(
+                req.params.userId,
+                req.params.id,
+                this.model
+            );
             res.status(200).json({ message: `Movie ${req.params.id} deleted` });
         }
     );
 
     deleteToWatchMovieHandler = asyncHandler(
         async (req: Request, res: Response) => {
-            await deleteToWatchMovie(req.params.id, req.params.id, this.model);
+            await deleteToWatchMovie(
+                req.params.userId,
+                req.params.id,
+                this.model
+            );
             res.status(200).json({ message: `Movie ${req.params.id} deleted` });
         }
     );
