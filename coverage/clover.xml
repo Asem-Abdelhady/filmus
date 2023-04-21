@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1682108060427" clover="3.2.0">
+  <project timestamp="1682108060427" name="All files">
+    <metrics statements="47" coveredstatements="15" conditionals="9" coveredconditionals="0" methods="7" coveredmethods="2" elements="63" coveredelements="17" complexity="0" loc="47" ncloc="47" packages="3" files="3" classes="3"/>
+    <package name="config">
+      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="config.tsx" path="/Users/hadisaleh/Desktop/dev/jamaa/epjs/filmus/src/config/config.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="hooks">
+      <metrics statements="34" coveredstatements="3" conditionals="9" coveredconditionals="0" methods="6" coveredmethods="1"/>
+      <file name="useFetch.tsx" path="/Users/hadisaleh/Desktop/dev/jamaa/epjs/filmus/src/hooks/useFetch.tsx">
+        <metrics statements="34" coveredstatements="3" conditionals="9" coveredconditionals="0" methods="6" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="44" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="52" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="65" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="69" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="88" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="utils">
+      <metrics statements="7" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="fetchImdb.ts" path="/Users/hadisaleh/Desktop/dev/jamaa/epjs/filmus/src/utils/fetchImdb.ts">
+        <metrics statements="7" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
