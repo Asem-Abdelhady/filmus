@@ -33,8 +33,6 @@ const Navbar = () => {
             <DefaultButton text={"Personal"} />
           </Link>
           <ProfileButton
-            name={"Vladimir"}
-            surname={"Kalabukhov"}
             imageUrl="https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
           />
         </Wrap>

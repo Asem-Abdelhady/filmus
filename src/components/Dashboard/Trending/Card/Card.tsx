@@ -1,4 +1,5 @@
 import {
+  Icon,
   Text,
   HStack,
   VStack,
@@ -9,10 +10,8 @@ import {
   Flex,
   Button,
 } from "@chakra-ui/react";
-import { Image } from "@chakra-ui/react";
+import { MdStar, MdHowToVote } from 'react-icons/md'
 import React from "react";
-
-import DefaultButton from "../../../Common/DefaultButton";
 
 import { BASE_URL, img_300, unavailable } from "../../../../config/config";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
@@ -84,16 +83,30 @@ const Card = (props: ICardProps) => {
       >
         {props.title}
       </Text>
-      <Text w={"100%"} fontSize="l" fontFamily="Work sans">
-        Release release_date: {props.release_date}
-      </Text>
 
-      <Text w={"100%"} fontSize="s" fontFamily="Work sans">
-        vote_average: {props.vote_average}
-      </Text>
-      <Text w={"100%"} fontSize="s" fontFamily="Work sans">
-        vote_count: {props.vote_count}
-      </Text>
+      <HStack w={"100%"} bg="white" justifyContent={"space-between"}>
+        <Text fontSize="l" fontFamily="Work sans">
+          Movie
+        </Text>
+        <Text fontSize="l" fontFamily="Work sans">
+          {props.release_date}
+        </Text>
+      </HStack>
+
+      <HStack w={"100%"} bg="white" justifyContent={"space-between"}>
+        <HStack>
+          <Text fontSize="l" fontFamily="Work sans">
+            {props.vote_count}
+          </Text>
+          <Icon as={MdHowToVote} />
+        </HStack>
+        <HStack>
+          <Text fontSize="l" fontFamily="Work sans">
+            {Math.round(props.vote_average * 10) / 10}
+          </Text>
+          <Icon as={MdStar} />
+        </HStack>
+      </HStack>
 
       <HStack w={"100%"} bg="white" justifyContent={"left"}>
         <Wrap>

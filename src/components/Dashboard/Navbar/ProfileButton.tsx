@@ -11,8 +11,6 @@ import React from "react";
 import ProfilePicture from "./ProfilePicture";
 
 interface IProps {
-  name: string;
-  surname: string;
   imageUrl: string;
 }
 

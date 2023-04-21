@@ -18,8 +18,11 @@ const App = () => {
   const { token, setToken } = useToken();
   const { userId, setUserId } = useUserId();
   const location = useLocation();
-  if ((!token || !userId) && !location.pathname.endsWith("signup")) {
-    return <Login setToken={setToken} setUserId={setUserId} />;
+  if ((!token || !userId)) {
+    if (location.pathname.endsWith("signup")) 
+      return <Signup setToken={setToken} setUserId={setUserId} />
+    else 
+      return <Login setToken={setToken} setUserId={setUserId} />;
   }
   return (
     <Box minW="650px">

@@ -69,7 +69,7 @@ function sanitizeEmail(email: string): string {
         throw new HttpException('Email must be at least 6 characters', 400);
     }
     if (email.length > 50) {
-        throw new HttpException('Email mut be less then 50 characters', 400);
+        throw new HttpException('Email must be less then 50 characters', 400);
     }
     if (email.match(emailRegex) == null) {
         throw new HttpException('Please add a valid email', 400);
