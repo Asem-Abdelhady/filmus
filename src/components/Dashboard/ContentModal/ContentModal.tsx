@@ -21,6 +21,7 @@ import { Button, Box } from "@material-ui/core";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import InfoIcon from "@material-ui/icons/Info";
 import Carousel from "../Carousel/Carousel";
+import { HStack, VStack, Text, Stack } from "@chakra-ui/react";
 
 const ContentModal = () => {
   let { id } = useParams();
@@ -49,8 +50,8 @@ const ContentModal = () => {
   return (
     <>
       {data && (
-        <div>
-          <div className="ContentModal">
+        <Box>
+          <Stack w={"100%"} p={5} direction='row' spacing={5}>
             <img
               src={
                 data.poster_path
@@ -58,47 +59,51 @@ const ContentModal = () => {
                   : unavailable
               }
               alt={data.title}
+              style={{ borderRadius: "15px" }}
               className="dataModal__portrait"
             />
-            <img
-              src={
-                data.backdrop_path
-                  ? `${img_500}/${data.backdrop_path}`
-                  : unavailableLandscape
-              }
-              alt={data.title}
-              className="dataModal__landscape"
-            />
-            <div className="dataModal__about">
-              <span className="dataModal__title">
+            <VStack>
+              <Text
+                w={"100%"}
+                fontSize="xx-large"
+                fontFamily="Work sans"
+                fontWeight={"bold"}
+              >
                 {data.title} ({(data.release_date || "-----").substring(0, 4)})
-              </span>
-              {data.tagline && <i className="tagline">{data.tagline}</i>}
-
-              <span className="dataModal__description">{data.overview}</span>
-
-              <span className="Basic-Info">
-                <span>
-                  <span className="info-tag">Budjet:</span> {data.budget}$ USD
-                </span>
-
-                <span>
-                  <span className="info-tag">Duration:</span> {data.runtime} min
-                </span>
-
-                <span>
-                  <span className="info-tag">Country:</span>{" "}
-                  {data.production_countries.length > 0
-                    ? data.production_countries[0].name
-                    : ""}
-                </span>
-              </span>
-
-              <div>
+              </Text>
+              <Text
+                w={"100%"}
+                fontSize="x-large"
+                fontStyle={"italic"}
+                fontFamily="Work sans"
+              >
+                {data.tagline}
+              </Text>
+              <Text w={"100%"} fontFamily="Work sans">
+                {data.overview}
+              </Text>
+              <HStack w={"100%"} justifyContent={"space-between"}>
+                <HStack justifyContent={"space-between"}>
+                  <Text fontFamily="Work sans" fontWeight={"bold"}>Budjet:</Text>
+                  <Text fontFamily="Work sans">{data.budget}$ USD</Text>
+                </HStack>
+                <HStack justifyContent={"space-between"}>
+                  <Text fontFamily="Work sans" fontWeight={"bold"}>Duration:</Text>
+                  <Text fontFamily="Work sans">{data.runtime} min</Text>
+                </HStack>
+                <HStack justifyContent={"space-between"}>
+                  <Text fontFamily="Work sans" fontWeight={"bold"}>Country:</Text>
+                  <Text fontFamily="Work sans">{" "}
+                    {data.production_countries.length > 0
+                      ? data.production_countries[0].name
+                      : ""}
+                  </Text>
+                </HStack>
+              </HStack>
+              <Stack maxWidth={"750px"}>
                 <Carousel id={id} />
-              </div>
-
-              <Box display="flex" justifyContent="space-between">
+              </Stack>
+              <HStack w={"100%"} display="flex" justifyContent="space-between">
                 <div className="trailer-button">
                   <Button
                     variant="contained"
@@ -122,10 +127,10 @@ const ContentModal = () => {
                     Check IMBD for more
                   </Button>
                 </div>
-              </Box>
-            </div>
-          </div>
-        </div>
+              </HStack>
+            </VStack>
+          </Stack>
+        </Box>
       )}
     </>
   );

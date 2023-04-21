@@ -1,7 +1,7 @@
 import { Schema } from 'mongoose';
 import type IUser from '../types/UserTypes';
 // eslint-disable-next-line no-useless-escape
-export const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+export const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w+)+$/;
 
 export interface IUserSchema extends IUser {
     _id: string;
