@@ -8,8 +8,12 @@ import {
   WrapItem,
   Flex,
   Button,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
 } from "@chakra-ui/react";
-import { Image } from "@chakra-ui/react";
+
 import React from "react";
 
 import DefaultButton from "../../../Common/DefaultButton";
@@ -22,10 +26,13 @@ import { FaRegSave } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ICardProps from "./CardProps";
 import axios from "axios";
+import { useState } from "react";
 
 const Card = (props: ICardProps) => {
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
+  const [showAlert, setShowAlert] = useState(false);
+
   const config = {
     headers: { authorization: `Bearer ${token}` },
   };
@@ -40,34 +47,110 @@ const Card = (props: ICardProps) => {
     release_date: props.release_date,
   };
 
+
+  async function deleteFrom(type: string): Promise<boolean> {
+    try{
+
+      const res = await axios.delete(
+        `${BASE_URL}/users/${userId}/${type}/${body.id}`,
+        {
+          headers: { authorization: `Bearer ${token}` },
+        }
+      );
+
+      if (res.status === 200){
+        console.log(true);
+        return true;
+      }
+
+    } catch (err){
+      console.log(false);
+      return false;
+    }    
+  }
+
+
+  async function checkExists(type: string): Promise<boolean> {
+    try{
+      
+      const res = await axios.get(
+        `${BASE_URL}/users/${userId}/${type}/${body.id}`,
+        {
+          headers: { authorization: `Bearer ${token}` },
+        }
+      );
+
+      if (res.status === 201){
+        console.log(true);
+        return true;
+      }
+      else{
+        console.log(false);
+        return false;
+      }
+
+    } catch (err){
+      console.log(false);
+      return false;
+    }    
+  }
+
   async function addToFavorite(): Promise<any> {
-    const res = await axios.post(
-      `${BASE_URL}/users/${userId}/loved`,
-      body,
-      config
-    );
-    return res;
+
+    if (await checkExists("loved") === true){
+      deleteFrom("loved");
+    }
+    
+    else{
+      const res = await axios.post(
+        `${BASE_URL}/users/${userId}/loved`,
+        body,
+        config
+      );
+      console.log(res)
+
+      return res;
+
+    }
   }
 
   async function addToWatch(): Promise<any> {
-    const res = await axios.post(
-      `${BASE_URL}/users/${userId}/to-watch`,
-      body,
-      config
-    );
-    return res;
+    if (await checkExists("to_watch") === true){
+      deleteFrom("to_watch");
+    }
+
+    else{
+      const res = await axios.post(
+        `${BASE_URL}/users/${userId}/to_watch`,
+        body,
+        config
+      );
+      console.log(res)
+
+      return res;
+
+    }
   }
 
   async function addToWatched(): Promise<any> {
-    const res = await axios.post(
-      `${BASE_URL}/users/${userId}/watched`,
-      body,
-      config
-    );
-    return res;
+    if (await checkExists("watched") === true){
+      deleteFrom("watched");
+    }
+    
+    else{
+      const res = await axios.post(
+        `${BASE_URL}/users/${userId}/watched`,
+        body,
+        config
+      );
+      console.log(res)
+
+      return res;
+    }
   }
   return (
-    <VStack p={5} shadow="md" borderWidth="1px" minWidth={300} maxWidth={400}>
+    <>
+      <VStack p={5} shadow="md" borderWidth="1px" minWidth={300} maxWidth={400}>
       <img
         style={{ borderRadius: "5px" }}
         height={200}
@@ -125,6 +208,18 @@ const Card = (props: ICardProps) => {
         </Wrap>
       </HStack>
     </VStack>
+
+    { showAlert && (
+      <Alert status='error'>
+        <AlertIcon />
+        <AlertTitle>Error!</AlertTitle>
+        <AlertDescription>It is deleted.</AlertDescription>
+      </Alert>
+    )}
+
+    </>
+    
+    
   );
 };
 

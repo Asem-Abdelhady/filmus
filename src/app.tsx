@@ -22,7 +22,8 @@ const App = () => {
     return <Login setToken={setToken} setUserId={setUserId} />;
   }
   return (
-    <Box minW="650px">
+
+<Box minW="650px">
       <Navbar />
       <Routes>
         <Route path="/filmus" element={<Home />} />
@@ -53,6 +54,7 @@ const App = () => {
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Box>
+    
   );
 };
 

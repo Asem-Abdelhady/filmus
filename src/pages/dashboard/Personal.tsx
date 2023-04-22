@@ -4,7 +4,7 @@ import { Divider, Text, VStack } from "@chakra-ui/react";
 import IApiResponse from "../../interfaces/ApiResponse";
 import React from "react";
 import Navbar from "../../components/Dashboard/Navbar/Navbar";
-import CardsList from "../../components/Dashboard/Trending/CardsList";
+import PersonalCardsList from "../../components/Dashboard/Trending/PersonalCardList";
 import { BASE_URL } from "../../config/config";
 import fetchMovies from "../../utils/fetchMovies";
 
@@ -40,12 +40,9 @@ export default function Personal() {
           Favourite
         </Text>
         <Divider orientation={"horizontal"} colorScheme={"blackAlpha"} />
-        <CardsList
-          page={1}
+        <PersonalCardsList
+          name="loved"
           results={loved}
-          total_pages={0}
-          total_results={0}
-          page_name={""}
         />
         <Divider orientation={"horizontal"} />
 
@@ -60,12 +57,9 @@ export default function Personal() {
         </Text>
         <Divider orientation={"horizontal"} />
 
-        <CardsList
-          page={1}
-          results={toWatch}
-          total_pages={0}
-          total_results={0}
-          page_name={""}
+        <PersonalCardsList
+          name="wishlist"
+          results={toWatch}      
         />
         <Divider orientation={"horizontal"} />
 
@@ -80,12 +74,9 @@ export default function Personal() {
         </Text>
         <Divider orientation={"horizontal"} colorScheme={"blackAlpha"} />
 
-        <CardsList
-          page={1}
+        <PersonalCardsList
+          name="watched"
           results={watched}
-          total_pages={0}
-          total_results={0}
-          page_name={""}
         />
       </VStack>
     </>
