@@ -11,7 +11,7 @@ import {
 import React from "react";
 import ProfileButton from "./ProfileButton";
 import DefaultButton from "../../Common/DefaultButton";
-import logo from "../../../assets/Filmus-Word-Logo.png";
+import { logo } from "../../../assets";
 
 // TODO : set name, surname and proper profile picture to @ProfileButton
 
@@ -32,9 +32,7 @@ const Navbar = () => {
           <Link href="/filmus/personal">
             <DefaultButton text={"Personal"} />
           </Link>
-          <ProfileButton
-            imageUrl="https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
-          />
+          <ProfileButton imageUrl="https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg" />
         </Wrap>
       </HStack>
       <Divider />

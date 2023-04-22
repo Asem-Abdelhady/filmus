@@ -4,18 +4,17 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { img_300, noPicture } from "../../../config/config";
 import "./Carousel.css";
-import {
-  BASE_URL,
-} from "../../../config/config";
+import { BASE_URL } from "../../../config/config";
 import ICreditsData, { ICast } from "../../../interfaces/ApiCreditsResponse";
 
-const handleDragStart = (e:any):React.DragEventHandler<HTMLImageElement> => e.preventDefault();
+const handleDragStart = (e: any): React.DragEventHandler<HTMLImageElement> =>
+  e.preventDefault();
 
-interface IProps{
-  id:string
+interface IProps {
+  id: string;
 }
 
-const Gallery = (props:IProps) => {
+const Gallery = (props: IProps) => {
   const [credits, setCredits] = useState<ICast[]>([]);
 
   const responsive = {
@@ -43,7 +42,6 @@ const Gallery = (props:IProps) => {
   }, []);
 
   const items = credits.map((c) => (
-
     <div className="carouselItem">
       <img
         src={c.profile_path ? `${img_300}/${c.profile_path}` : noPicture}
@@ -53,7 +51,6 @@ const Gallery = (props:IProps) => {
       />
       <b className="carouselItem__txt">{c?.name}</b>
     </div>
-    
   ));
 
   return (
@@ -66,7 +63,6 @@ const Gallery = (props:IProps) => {
       items={items}
       autoPlay
     />
-    
   );
 };
 
