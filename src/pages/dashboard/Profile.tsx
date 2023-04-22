@@ -17,6 +17,7 @@ import ILoginResponse from "../../interfaces/LoginResponse";
 import IRegisterData from "../../interfaces/RegisterData";
 
 import IUser from "../../../backend/types/UserTypes";
+import IUpdatedUser from "../../interfaces/UpdatedUser";
 
 const Profile = () => {
   const userId = localStorage.getItem("userId");
@@ -25,32 +26,56 @@ const Profile = () => {
   const email_ = localStorage.getItem("email");
   const username = localStorage.getItem("userName");
   const isadmin = localStorage.getItem("isAdmin");
-  
+
   const [email, setEmail] = useState<string>(email_);
   const [userName, setUserName] = useState<string>(username);
-  const [isAdmin, setIsAdmin] = useState<string>(isadmin);
-  
+  const [password, setPassword] = useState<string>(username);
+
   /*const body: IRegisterData = {
     email: email,
     username: userName,
     isAdmin: isAdmin,
   };*/
-  
+
+  const config = {
+    headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+  };
+
   const handleSave = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const res = await axios.put<ILoginResponse>(URL, body);
+    let newUser: ILoginResponse = JSON.parse(localStorage.getItem("user"));
+    console.log(userName);
+
+    newUser.email = email;
+    newUser.username = userName;
+    console.log(newUser);
+    let updatedUser: IUpdatedUser = { ...newUser, password };
+    const res = await axios.put<ILoginResponse>(URL, updatedUser, config);
+    localStorage.setItem("email", email);
+    localStorage.setItem("userName", userName);
+    console.log("Here");
+
+    window.location.reload();
   };
 
   return (
-    <HStack boxShadow="md" borderRadius="md" w="50%" m="auto" mt="28" p={5} spacing={5}>
+    <HStack
+      boxShadow="md"
+      borderRadius="md"
+      w="50%"
+      m="auto"
+      mt="28"
+      p={5}
+      spacing={5}
+    >
       <Image
-        boxSize='250px'
-        objectFit='cover'
+        boxSize="250px"
+        objectFit="cover"
         borderRadius="15px"
         src="https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
         alt={userName}
       />
-      <VStack >
+      <VStack>
         <Text
           w={"100%"}
           fontSize="xx-large"
@@ -59,7 +84,7 @@ const Profile = () => {
         >
           Hello, {userName}!
         </Text>
-        <form style={{width:"100%"}} onSubmit={handleSave}>
+        <form style={{ width: "100%" }} onSubmit={handleSave}>
           <Stack w={"100%"} spacing={3}>
             <FormControl>
               <FormLabel>Email address</FormLabel>
@@ -75,6 +100,16 @@ const Profile = () => {
                 type="username"
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Password</FormLabel>
+              <Input
+                type="password"
+                placeholder="Enter new password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               />
             </FormControl>
             <Button type="submit" colorScheme="teal">

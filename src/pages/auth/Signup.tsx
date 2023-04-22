@@ -38,6 +38,10 @@ const Signup = (props: IProps) => {
 
     props.setToken(res.data.access_token);
     props.setUserId(res.data._id);
+    localStorage.setItem("userName", res.data.username);
+    localStorage.setItem("email", res.data.email);
+    localStorage.setItem("isAdmin", String(res.data.isAdmin));
+    localStorage.setItem("user", JSON.stringify(res.data));
   };
 
   return (
@@ -66,7 +70,9 @@ const Signup = (props: IProps) => {
             <Input
               type="password"
               value={password}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              onChange={(e) => {
+                setConfirmPassword(e.target.value);
+              }}
             />
           </FormControl>
           <Button type="submit" colorScheme="teal">

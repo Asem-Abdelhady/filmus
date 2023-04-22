@@ -72,16 +72,17 @@ export async function updateUser(
     user: IUser,
     model: Model<IUserSchema>
 ): Promise<IUserSchema> {
-    const sanitizedUser = await sanitizeUser(user);
-
     try {
-        const updatedUser = await model.findByIdAndUpdate(
-            userId,
-            sanitizedUser,
-            {
-                new: true,
-            }
-        );
+        const userFound = await model.findById(userId);
+        if (userFound == null) throw new Error('User not found');
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(user.password, salt);
+        userFound.password = hashedPassword;
+        userFound.email = user.email;
+        userFound.username = user.username;
+        const updatedUser = await model.findByIdAndUpdate(userId, userFound, {
+            new: true,
+        });
         if (updatedUser == null) throw new Error('User not found');
         return updatedUser;
     } catch (err) {

@@ -39,7 +39,8 @@ const Login = (props: IProps) => {
     props.setUserId(res.data._id);
     localStorage.setItem("userName", res.data.username);
     localStorage.setItem("email", res.data.email);
-    localStorage.setItem("isAdmin",String(res.data.isAdmin));
+    localStorage.setItem("isAdmin", String(res.data.isAdmin));
+    localStorage.setItem("user", JSON.stringify(res.data));
   };
 
   return (

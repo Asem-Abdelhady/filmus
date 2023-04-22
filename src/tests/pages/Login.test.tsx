@@ -13,7 +13,7 @@ test("laods and displays login form", async () => {
   let passwordInput = screen.getAllByRole("inputtextbox")[1];
   console.log(passwordInput);
   userEvent.type(userIdInput, "el3os10@gmail.com");
-  userEvent.type(passwordInput, "password");
+  userEvent.type(passwordInput, "testpass");
   await userEvent.click(screen.getByText("Login", { selector: "button" }));
   expect(setToken).toHaveBeenCalled();
   expect(setUserId).toHaveBeenCalled();
