@@ -4,7 +4,6 @@ import IApiResponse from "../interfaces/ApiResponse";
 
 const token = localStorage.getItem("token");
 const userId = localStorage.getItem("userId");
-console.log(token);
 
 const fetchMovies = async (type: string): Promise<IApiResponse[]> => {
   try {
