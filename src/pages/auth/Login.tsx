@@ -37,6 +37,9 @@ const Login = (props: IProps) => {
     );
     props.setToken(res.data.access_token);
     props.setUserId(res.data._id);
+    localStorage.setItem("userName", res.data.username);
+    localStorage.setItem("email", res.data.email);
+    localStorage.setItem("isAdmin",String(res.data.isAdmin));
   };
 
   return (
